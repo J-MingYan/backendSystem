@@ -1,0 +1,499 @@
+//按鈕顏色 粉色
+.btn-text-custom-pink
+{
+  @include button-variant(pink, pink);
+}
+
+//按鈕顏色 紫色
+.btn-text-custom-Purple
+{
+  @include button-variant(#6659de ,#fff);
+}
+
+//按鈕顏色 淡藍色
+.btn-text-custom-b0d6f0
+{
+  @include button-variant(#b0d6f0, #b0d6f0);
+  color: white;
+  &:hover
+  {
+    color: black;
+  }
+  &.active
+  {
+    color: black
+  }
+}
+
+//按鈕顏色 淡綠色
+.btn-custom-c7faed
+{
+  @include button-variant(#c7faed, #c7faed);
+  color: #1abc9c;
+  border-color: rgba(26, 188, 156, .12);
+  &:hover
+  {
+    background-color: #1abc9c;
+    color: white;
+  }
+  &.active
+  {
+    background-color: #1abc9c;
+    color: white
+  }
+}
+
+//按鈕顏色 淡粉色
+.btn-custom-fee1e5
+{
+  @include button-variant(#fee1e5, #fee1e5);
+  color: #f1556c;
+  border-color: rgba(26, 188, 156, .12);
+  &:hover
+  {
+    background-color: #f1556c;
+    color: white;
+  }
+  &.active
+  {
+    background-color: #f1556c;
+    color: white
+  }
+}
+
+//按鈕顏色 橘色
+.btn-text-outline-orange
+{
+    @include button-outline-variant(orange ,#fff);
+}
+
+//按鈕顏色 淡藍色 點擊有陰影效果
+.btn-text-outline-info
+{
+    @include button-outline-variant($info ,$white);
+
+    &.active
+    {
+      box-shadow: 0 5px 3px black;
+    }
+}
+
+
+//方向感知 按鈕 波紋效果 搭配js
+.direction
+{
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+}
+.spanBox
+{
+  position: absolute;
+  background-color: #fff;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  border-radius: 50%;
+  animation: animate 1s linear infinite;
+}
+@keyframes  animate
+{
+  0%
+  {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
+  }
+  100%
+  {
+    width: 500px;
+    height: 500px;
+    opacity: 0;
+  }
+}
+
+
+
+// LOGO樣式
+.logo
+{
+  background: url('/images/img/logo.cc469f1a.png');
+  width: 134px;
+  height: 70px;
+  display: block;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  text-indent: 101%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+@media (max-width:768px)
+{
+  .logo
+  {
+    width: 80px;
+    height: 40px;
+  }
+}
+
+
+//連結樣式清除
+.link-decoration-none
+{
+  text-decoration: none;
+}
+
+//連結滑入樣式
+.all-links_hover
+{
+  position: relative;
+
+  &::after
+  {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    width: 100%;
+    height: 5px;
+    background: $white;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .4s;
+  }
+  &:hover::after
+  {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  &::before
+  {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0px;
+    width: 100%;
+    height: 5px;
+    background: $white;
+    border-radius: 5px;
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform .4s;
+  }
+  &:hover::before
+  {
+    transform: scaleX(1);
+    transform-origin: right;
+  }
+}
+
+//背景置中＋不重複
+.bg-img-cover
+{
+  background-position: center center;
+  background-size: cover;
+
+  background-repeat: no-repeat;
+}
+//背景置中靠上＋不重複
+.bg-img-center_top
+{
+  background-position: center top;
+  background-size: cover;
+
+  background-repeat: no-repeat;
+}
+//背景置中靠下＋不重複
+.bg-img-center_bottom
+{
+  background-position: center bottom;
+  background-size: cover;
+
+  background-repeat: no-repeat;
+}
+//背景大小cover＋不重複
+.bg-img-size_cover
+{
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+//背景固定
+.bg-attachment-fixed
+{
+  background-attachment: fixed;
+}
+
+//背景漸變
+.bg-dark-gradent
+{
+  background-image: linear-gradient(180deg , rgba(0,0,0,0),rgba(0,0,0,1));
+}
+
+//背景模糊
+.backdrop-filter
+{
+    backdrop-filter: blur(3px) !important;
+}
+
+//圖片置中
+.object-fit-cover
+{
+  object-fit: cover;
+}
+
+//圖片縮圖放大
+.img-transform-scale
+{
+  transform: scale(1);
+  transition: .5s;
+}
+.img-transform-scale:hover
+{
+  transform: scale(1.1);
+}
+
+
+//滑入背景顏色效果
+.all-hover
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  // transition: all .5s;
+  &:hover
+  {
+    // background-color: black;
+    background-image: linear-gradient(30deg , rgb(3, 60, 112), rgb(117, 153, 238), rgba(131, 112, 227, 0.455));
+  }
+}
+.all-bg-hover-white
+{
+  cursor: pointer;
+  transition: background-color .5s;
+
+  &:hover
+  {
+    background-color: white !important;
+  }
+}
+
+//滑入文字顏色效果
+.all-text-hover:hover
+{
+  transition: all .7s;
+  color: $white;
+}
+.all-text-hover-pink:hover
+{
+  transition: all .7s;
+  color: pink;
+  cursor: pointer;
+}
+
+//裝飾線
+.all-deco-line
+{
+  padding-left: 1rem;
+  position: relative;
+
+  &::before
+  {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: $info;
+  }
+}
+
+//向下滾動Ｙ軸會有進入進出效果
+//--- 左邊進 ---
+.all-animated-s
+{
+  opacity: 0;
+  transform: translateX(-400px);
+  transition: transform 1.5s;
+}
+.fadeln-s
+{
+  opacity: 1;
+  transform: translateX(0);
+}
+//--- 右邊進 ---
+.all-animated-e
+{
+  opacity: 0;
+  transform: translateX(400px);
+  transition: transform 1.5s;
+}
+.fadeln-e
+{
+  opacity: 1;
+  transform: translateX(0);
+}
+//--- 上邊進 ---
+.all-animated-t
+{
+  opacity: 0;
+  transform: translateY(400px);
+  transition: transform 1.5s;
+}
+.fadeln-t
+{
+  opacity: 1;
+  transform: translateY(0);
+}
+//--- 下邊進 ---
+.all-animated-b
+{
+  opacity: 0;
+  transform: translateY(-400px);
+  transition: transform 1.8s;
+}
+.fadeln-b
+{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+//向下滾動Ｙ軸會有反轉效果
+.all-animated-x
+{
+  opacity: 0;
+  transform: scaleX(-1);
+  transition: transform 1.5s;
+}
+.fadeln-x
+{
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+
+//響應式關閉效果
+.all-clos
+{
+  // width:  50px;
+  // height: 50px;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.all-bar
+{
+  display: block;
+  margin-bottom: 5px;
+  width: 28px;
+  height: 4px;
+  background-color: #d9a0ae;
+
+  transition: .7s;
+
+  user-select: none;
+}
+
+.all-bar:nth-child(1)
+{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  animation: aaa 0.5s backwards;// 停留在剛開始的狀態
+  animation-direction: reverse;// 反向播放
+}
+.all-bar:nth-child(2)
+{
+  transform: translate(0%, -0%);
+  margin-bottom: 5px;
+  animation: bbb 0.5s backwards;// 停留在剛開始的狀態
+  animation-direction: reverse;// 反向播放
+}
+.all-bar:nth-child(3)
+{
+  animation: ccc 1s backwards;// 停留在剛開始的狀態
+  animation-direction: reverse;// 反向播放
+}
+
+.act .all-bar:nth-child(1)
+{
+//  transform: translate(0% , 0%) rotate(0deg);
+ animation: 0.5s forwards;// 停留在結束的狀態
+ animation-name: aaaa;
+ animation-duration: 0.5s;
+ animation-iteration-count: 1;
+ animation-delay: 0s;
+}
+.act .all-bar:nth-child(2)
+{
+  // transform: translate(-50% , 0%) rotate(0deg);
+  // background-color: transparent;
+  animation: 0.5s forwards;// 停留在結束的狀態
+  animation-name: bbbb;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-delay: 0s;
+}
+.act .all-bar:nth-child(3)
+{
+  // transform: translate(0% , 0%) rotate(0deg);
+  animation: 0.5s forwards;// 停留在結束的狀態
+  animation-name: cccc;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-delay: 0s;
+}
+
+@keyframes aaa
+{
+  0% {transform: translate(0% , 0%) rotate(0deg)}
+  50% {transform: translate(0% , 9px) rotate(0deg)}
+  60% {transform: translate(0% , 9px) rotate(0deg)}
+  100% {transform: translate(0% , 9px) rotate(45deg)}
+}
+@keyframes aaaa
+{
+  0% {transform: translate(0% , 0%) rotate(0deg)}
+  50% {transform: translate(0% , 9px) rotate(0deg)}
+  70% {transform: translate(0% , 9px) rotate(0deg)}
+  100% {transform: translate(0% , 9px) rotate(45deg)}
+}
+@keyframes bbb
+{
+  0% {transform: translate(0% , 0%) rotate(0deg)}
+  50% {transform: translate(-30% , 0%) rotate(0deg)}
+  70% {transform: translate(-50% , 0%) rotate(0deg)}
+  100% {background-color: transparent}
+}
+@keyframes bbbb
+{
+  0% {transform: translate(0% , 0%) rotate(0deg)}
+  50% {transform: translate(-30% , 0%) rotate(0deg)}
+  70% {transform: translate(-50% , 0%) rotate(0deg)}
+  100% {background-color: transparent}
+}
+@keyframes ccc
+{
+  0% {transform: translate(0% , 0%) rotate(0deg)}
+  50% {transform: translate(0% , 0%) rotate(90deg)}
+  70% {transform: translate(0% , -9px) rotate(90deg)}
+  100% {transform: translate(0% , -9px) rotate(135deg)}
+}
+@keyframes cccc
+{
+  0% {transform: translate(0% , 0%) rotate(0deg)}
+  50% {transform: translate(0% , 0%) rotate(90deg)}
+  70% {transform: translate(0% , -9px) rotate(90deg)}
+  100% {transform: translate(0% , -9px) rotate(135deg)}
+}

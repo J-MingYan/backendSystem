@@ -1,0 +1,183 @@
+@include media-breakpoint-up(xs)
+{
+    .test-header
+    {
+        height: 545px;
+        background-image: url("https://images.unsplash.com/photo-1515073883629-5e2924e3e106?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80");
+        background-size: cover;
+        background-position: bottom center;
+        background-repeat: no-repeat;
+
+        position: relative;
+        &::after
+        {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: black;
+            opacity: .3;
+            z-index: 0;
+        }
+    }
+    .shadow-lg
+    {
+        box-shadow: none !important;
+    }
+
+    .banner
+    {
+        background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=1694&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        height: 500px;
+        background-position: left center;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        position: relative;
+        z-index: -2;
+
+        &::after
+        {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: black;
+            opacity: .2;
+            z-index: -1;
+        }
+    }
+
+}
+
+
+
+@include media-breakpoint-up(lg)
+{
+    .test-header
+    {
+        height: 627px;
+        background-image: url("https://images.unsplash.com/photo-1515073883629-5e2924e3e106?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+
+        position: relative;
+        &::after
+        {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: black;
+            opacity: .3;
+            z-index: 0;
+        }
+    }    
+    .shadow-lg
+    {
+        box-shadow: $box-shadow-lg !important;
+    }
+
+    .banner
+    {
+        background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=1694&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        height: 550px;
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        position: relative;
+        z-index: -2;
+
+        &::after
+        {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: black;
+            opacity: .2;
+            z-index: -1;
+        }
+    }
+
+}
+
+
+//商品列表點擊後效果
+.product
+{
+    text-decoration: none;
+    padding: 0px 16px;
+    color: $dark;
+    border-right: 3px solid $dark;
+    font-size: 16px;
+    cursor: pointer;
+    transition: ease .25s;
+
+    &:hover
+    {
+        color: $coffee;
+    }
+    &.active
+    {
+        color: $orange;
+        border-right: 3px solid $orange;
+        font-size: 25px;
+    }
+}
+
+
+//按鈕＝回到上方
+.back-to-top
+{
+    position: fixed;
+    bottom: 10px;
+    right:  10px;
+    font-size: 50px;
+    padding: 0 20px;
+    color: $coffee;
+    cursor: pointer;
+}
+
+
+
+//banner裡的自動打字背景
+.all-bg-white
+{
+    background-color: rgba(255, 255, 255, 0.5);
+    // width: 330px;
+}
+
+//輪播裡的左右按鈕背景
+.all-cs
+{
+  background-color:rgba(0, 0, 0, 0.387) !important;
+  width: 50px;
+  height: 80px;
+  border-radius: 5px;
+  z-index: 15 !important;
+  color: $gray-400 !important;
+}
+
+
+// .baa
+// {
+//     width: 100px; 
+//     height: 100px; 
+//     background-color: gray; 
+//     margin: 0 auto;
+// }
+// .bff
+// {
+//     background-color: red !important;
+// }

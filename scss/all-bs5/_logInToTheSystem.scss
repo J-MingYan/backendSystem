@@ -1,0 +1,400 @@
+// 登入頁面 背景圖
+.bg-pattern
+{
+    background-image: url('/images/img/bg-pattern-2.png');
+    background-size: cover;
+}
+
+// span裡的文字樣式
+.textPleaseEnter
+{
+    display: inline-block !important;
+    color: #bdc3ca !important;
+    font-style: italic;
+}
+@media (max-width:375px)
+{
+    .textPleaseEnter
+    {
+        display: block !important;
+    }
+}
+
+// 輸入頁面 改變聚焦
+.form-control:focus
+{
+    border: 1px solid blue;
+    outline: 0 !important;
+}
+// 輸入頁面 改變字體
+.form-control::placeholder
+{
+    color: #bdc3ca;
+}
+
+// 改變 登入checked
+.form-check-input[type='checkbox']:checked
+{
+  border: 1px solid #6659de;
+  background-color: #6659de;
+}
+// 改變 input checked
+.form-check-input[type='radio']:checked {
+    background-color: #6659de;
+    border-color: #6659de;
+}
+// 一開始有 checked 狀態
+.form-check-input:checked + .form-check-label {
+    color: #6659de; /* 修改這裡的顏色為你想要的顏色 */
+}
+
+// 後台樣式
+.lantern-announcement-box
+{
+    background-color: hsla(0, 0%, 100%, .07);
+    border-radius: 30px;
+    height: 40px;
+    width: 600px;
+    margin: 0 auto 0 20px;
+    line-height: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #fff;
+    font-size: 14px;
+}
+@media (max-width:1100px)
+{
+    .lantern-announcement-box
+    {
+        display: none;
+    }    
+}
+
+// 客服人員圖片容器
+.customerService
+{
+    margin-left: auto;
+    cursor: pointer;
+}
+
+// 客服人員圖片
+.customerServiceImg
+{
+    max-width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    position: relative;
+    z-index: -1;
+}
+
+// 客服人員名字
+.customerServiceName
+{
+    color: rgba(255, 255, 255, .6);
+    margin: 0 10px 0 10px;
+    position: relative;
+    z-index: -1;
+}
+
+// 客服人員名字 旁 icon
+.bi.bi-chevron-down
+{
+    font-size: 10px;
+}
+
+// 使用者設定
+.userSettings
+{
+    background-color: white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    position: absolute;
+    right: 10px;
+    padding: 20px 10px 1px;
+    width: 170px;
+    transform: translateY(30px);
+    transition: all .3s;
+    opacity: 0;
+    pointer-events: none;
+
+    &.active
+    {
+        transform: translateY(0px);
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+// 使用者設定標題
+.userSettingsItile
+{
+    padding: 7px 20px;
+    margin: 0;
+    font-size: .75rem;
+}
+// 使用者設定連結
+.userSettingsLink
+{
+    display: block;
+    text-decoration: none;
+    color: #888f96;
+    padding: 7px 20px;
+    font-size: .875rem;
+
+    &:hover
+    {
+        color: #272e37;
+        background-color: #f7f8f9;
+    }
+}
+
+
+// 業務對話系統樣式
+.businessDialogueSystem
+{
+    background-color: #37424c;
+    width: 210px;
+    position: fixed;
+    top: 85px;
+    bottom: 0;
+    z-index: 10;
+
+    transition: all .2s;
+    // overflow: hidden;
+
+    // 改變寬度
+    &.active
+    {
+        width: 70px;
+    }
+}
+@media (max-width:768px)
+{
+    .businessDialogueSystem
+    {
+        top: 80px;
+    }
+}
+
+// 業務對話系按鈕
+.businessDialogueSystemBtn
+{
+    font-weight: 400;
+    color: #03FFFA;
+    background-color: #37424c;
+    border-color: #37424c;
+    display: block;
+    width: 170px;
+    margin: 20px auto 0;
+
+    position: relative;
+
+    &:hover
+    {
+        color: #00acc1;
+    }
+    &::after
+    {
+        content: '▾';
+        position: absolute;
+        top: 6px;
+        right: 10px;
+        font-size: 20px;
+        transition: all .3s;
+    }
+    &.active::after
+    {
+        transform: rotate(-90deg);
+    }
+}
+
+// 按鈕文字置中 和 icon 邊距
+.businessDialogueSystem.active .businessDialogueSystemBtn
+{
+    width: 100%;
+    text-align: center !important;
+}
+.businessDialogueSystem.active .businessDialogueSystemBtn .bi-headset
+{
+    margin: 0 !important;
+    font-size: 1.5rem !important;
+}
+
+// 業務對話系統 和 after
+.businessDialogueSystem.active .businessDialogueSystemBtn::after,
+.businessDialogueSystem.active .businessDialogueSystemBtn span
+{
+    display: none;
+}
+
+// 業務對話系連結的外誆
+.businessDialogueSystemBox
+{
+    width: 160px;
+    margin-left: 50px;
+    padding: 0 0 0 7px;
+
+    transition: all .3s;
+    overflow: hidden;
+    height: 490px;
+
+    &.hide
+    {
+        height: 0px;
+    }
+}
+
+// 業務對話系連結
+.businessDialogueSystemLink
+{
+    display: block;
+    color: white;
+    padding: 10px;
+    font-size: 0.850rem;
+    text-decoration: none;
+
+    &:hover
+    {
+        color: #00acc1;
+    }
+
+    &.active
+    {
+        color: #03FFFA;
+    }
+}
+
+// 改變 業務對話系連結的外誆
+.businessDialogueSystem.active .businessDialogueSystemBox
+{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 18px;
+    z-index: -1;
+    padding: 20px 0 0 0;
+    background-color: #37424c;
+}
+
+// 改變 業務對話系連結文字
+.businessDialogueSystem.active .businessDialogueSystemLink
+{
+    font-size: 0.950rem;
+}
+
+// 改變後滑入 業務對話系連結的外誆
+.businessDialogueSystem.active:hover .businessDialogueSystemBox
+{
+    display: block;
+}
+
+.businessDialogueSystem.active:hover .businessDialogueSystemBtn
+{
+    background-color: #03fff3;
+    color: white;
+}
+
+
+// 資訊欄位
+.informationField
+{
+    width: 100%;
+    background-color: #f5f5f5;
+    margin-left: 210px;
+    padding-bottom: 2rem;
+
+    overflow-x: hidden; /* 隱藏橫向滾動條，因為在表格內容過多會有Ｘ軸 */
+
+    &.zoomInOrOut
+    {
+        margin-left: 70px;
+    }
+}
+
+// 顯示資料
+.no-data
+{
+    text-align: center;
+    color: #98a6ad;
+    font-size: 14px;
+    padding-top: 100px;
+    padding-bottom: 300px;
+    font-style: italic;
+}
+.no-data2
+{
+    text-align: center;
+    color: #98a6ad;
+    font-size: 14px;
+    padding: 20px 0 20px 0;
+    font-style: italic;
+}
+
+// index6 裡的表單
+/* 固定左邊列 */
+.fixed-left-bg {
+    position: sticky;
+    left: 0;
+    background: #212529 !important; /* 背景顏色與表格背景一致 */
+    z-index: 2; /* 確保固定列在最上層 */
+}
+.fixed-left {
+    position: sticky;
+    left: 0;
+    background: #fff !important; /* 背景顏色與表格背景一致 */
+    z-index: 2; /* 確保固定列在最上層 */
+}
+  
+/* 固定右邊列 */
+.fixed-right-bg {
+    position: sticky;
+    right: 0;
+    background: #212529 !important; /* 背景顏色與表格背景一致 */
+    z-index: 2; /* 確保固定列在最上層 */
+}
+.fixed-right {
+    position: sticky;
+    right: 0;
+    background: #fff !important; /* 背景顏色與表格背景一致 */
+    z-index: 2; /* 確保固定列在最上層 */
+}
+
+/* 分頁樣式 */
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0 35px;
+  }
+@media (max-width:768px) {
+    .pagination{
+        margin: 10px 0 0 0;
+    }
+}
+.pagination button {
+    font-size: .75rem;
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: white;
+}
+.pagination button:hover
+{
+    background-color: #007bff;
+    color: #000;
+}
+.pagination .active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+.pagination .disabled {
+    color: #ccc;
+    pointer-events: none;
+}
+.pagination .ellipsis {
+    /* cursor: default; */
+    cursor: pointer;
+    background-color: white;
+}
