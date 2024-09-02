@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>(2)Line業務對話系統</title>
+  <meta property="og:locale" content="zh_TW" />
+
+
+  <!-- Bootstrap5 Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+  <!-- Flatpickr -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+  <!-- 自己ＣＳＳ -->
+  <link rel="stylesheet" href="./css/all-Bootstrap-Sass.css">
+  
+</head>
+
+<style>
+    tr
+    {
+        background-color: #eaeaea;
+    }
+    /* 設置背景顏色為灰色 */
+    tr:nth-child(odd) td 
+    {
+        background-color: #fff;
+    }
+    /* 第二列的背景顏色 */
+    tr:nth-child(even) td
+    {
+        background-color: #fafafa;
+    }
+</style>
+
+<body style="padding-top: 85px;">
+    <!-- 導覽列 -->
+    <header class="position-relative position-fixed w-100 top-0" style="z-index: 100;">
+        <nav class="navbar navbar-light shadow" style="background-color: #37424c;">
+            <div class="container-fluid justify-content-start">
+                <!-- LOGO -->
+                <h1 class="ms-2 mb-0">
+                    <a class="navbar-brand logo" href="#">logo</a>
+                </h1>
+                <!-- 按鈕 -->
+                <button class="border-0 ms-2 px-3 lineBtn direction" type="button" style="background-color: #37424c;">
+                    <i class="bi bi-list text-white fs-2" style="position: relative; z-index: -1;"></i>
+                </button>
+                <div class="lantern-announcement-box">
+                    <!-- ？ -->
+                </div>
+                <!-- 客服人員 -->
+                <div class="customerService p-3 direction">
+                    <img src="./images/img/user-1.7458f61d.jpg" alt="客服人員圖片" class="customerServiceImg">
+                    <span class="customerServiceName">
+                        jc
+                        <i class="bi bi-chevron-down"></i>
+                    </span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 使用者設定 -->
+        <div class="userSettings rounded-3">
+            <h6  class="userSettingsItile">Welcome !</h6>
+            <a href="./index14.html" target="_blank" class="userSettingsLink"><i class="bi bi-gear-wide-connected me-2"></i>Setting</a>
+            <a href="./index15.html" target="_blank" class="userSettingsLink"><i class="bi bi-lock-fill me-2"></i>修改密碼</a>
+            <hr class="my-1">
+            <a href="#" class="userSettingsLink mb-2" id="signOut"><i class="bi bi-door-open me-2"></i>登出</a>
+        </div>
+    </header>
+
+    <!-- 業務對話系統樣式 -->
+    <section class="d-flex">
+        <div class="businessDialogueSystem ">
+            <button class="btn businessDialogueSystemBtn text-start" type="button">
+                <i class="bi bi-headset me-2 fs-5"></i>
+                <span>業務對話系統</span>
+            </button>
+            <ul class="list-unstyled businessDialogueSystemBox">
+                <li><a href="./index2.html" class="businessDialogueSystemLink">對話列表</a></li>
+                <li><a href="./index3.html" class="businessDialogueSystemLink">對話標籤統計</a></li>
+                <li><a href="./index4.html" class="businessDialogueSystemLink">對話紀錄檢討表</a></li>
+                <li><a href="./index5.html" class="businessDialogueSystemLink">人員錯誤檢討</a></li>
+                <li><a href="./index6.html" class="businessDialogueSystemLink">權限設定</a></li>
+                <li><a href="./index7.html" class="businessDialogueSystemLink">Line名稱列表</a></li>
+                <li><a href="./index8.html" class="businessDialogueSystemLink">Line名單管理</a></li>
+                <li><a href="./index9.html" class="businessDialogueSystemLink">Line名單群組列表</a></li>
+                <li><a href="./index10.html" class="businessDialogueSystemLink">問題分類</a></li>
+                <li><a href="./index11.html" class="businessDialogueSystemLink">對話評分表</a></li>
+                <li><a href="./index12.html" class="businessDialogueSystemLink">编辑歡迎語</a></li>
+                <li><a href="./index13.html" class="businessDialogueSystemLink active">跑馬燈公告</a></li>
+            </ul>
+        </div>
+
+        <!-- 資訊欄位 -->
+        <div class="informationField">
+            <div class="container-fluid px-5">
+                <div class="row">
+                    <div class="col-12 my-4 fw-light">
+                        <span>業務對話系統</span>
+                        <i class="bi bi-chevron-right"></i>
+                        <span>跑馬燈公告</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 bg-white p-4 rounded-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+                        <div class="row row-cols-1 row-cols-lg-3">
+                            <!-- 名稱 -->
+                            <div class="col">
+                                <label for="queryName" class="col-form-label text-nowrap">名稱</label>
+                                <input type="text" class="form-control" id="queryName" placeholder="請輸入名稱">
+                            </div>
+                            <!-- ID -->
+                            <div class="col">
+                                <label for="queryId" class="col-form-label text-nowrap">ID</label>
+                                <input type="text" class="form-control" id="queryId" placeholder="請輸入ID">
+                            </div>
+                            <!-- 查詢 -->
+                            <div class="col d-flex align-items-end flex-wrap">
+                                <button type="button" class="btn btn-primary me-3 my-1" id="captureButton">
+                                    查詢
+                                    <i class="bi bi-search ms-1"></i>
+                                </button>
+                                <button type="button" class="btn btn-secondary my-1" id="cancel">
+                                    取消
+                                </button>
+                            </div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="button" class="btn btn-purple mt-1" data-bs-toggle="modal" data-bs-target="#addNewInformation">
+                                    新增
+                                    <i class="bi bi-plus-circle-fill ms-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="overflow-hidden p-3" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
+                                <div class="col-12 fw-light table-responsive" style=" font-size: 14px;">
+                                    <table class="table table-borderless table-hover text-nowrap align-middle">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col" width="100">名稱</th>
+                                            <th scope="col" width="100">分類</th>
+                                            <th scope="col" width="100">開始時間</th>
+                                            <th scope="col" width="100">結束時間</th>
+                                            <th scope="col" width="100">狀態</th>
+                                            <th scope="col" width="100">內文</th>
+                                            <th scope="col" width="100">操作</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody id="renderTable">
+                                            <!-- <tr>
+                                                <td>
+                                                    哈囉你好嗎
+                                                </td>
+                                                <td>
+                                                    aa
+                                                </td>
+                                                <td>
+                                                    2023-06-01 00:00:00
+                                                </td>
+                                                <td>
+                                                    2023-06-11 00:00:00
+                                                </td>
+                                                <td>
+                                                    <span class="badge bg-teal p-2">上架</span>
+                                                </td>
+                                                <td>
+                                                    hello hello 567891011
+                                                </td>
+                                                <td>                                           
+                                                    <button type="button" class="btn btn-sm btn-custom-c7faed">編輯</button>
+                                                    <button type="button" class="btn btn-sm btn-custom-fee1e5">刪除</button>
+                                                </td>
+                                            </tr> -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 d-flex align-items-center flex-wrap">
+                                <!-- 共幾項資料 -->
+                                <div id="block-count">共79項</div>
+                                <!-- 顯示項目數量 -->
+                                <div class="btn-group ms-0 ms-sm-3">
+                                    <button type="button" class="btn btn-custom-c7faed dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="toggleOptionsBtn">
+                                        顯示 10 項
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                      <li><a class="dropdown-item" href="#" onclick="showBlocks(10)">顯示 10 項</a></li>
+                                      <li><a class="dropdown-item" href="#" onclick="showBlocks(20)">顯示 20 項</a></li>
+                                      <li><a class="dropdown-item" href="#" onclick="showBlocks(30)">顯示 30 項</a></li>
+                                    </ul>
+                                </div>
+                                <!-- 這裡將由 JavaScript 生成分頁按鈕 -->
+                                <div id="pagination" class="pagination flex-wrap">
+                                    <!-- ... -->
+                                </div>                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </section>
+
+
+    <!-- 新增 動態框 -->
+    <div class="modal fade" id="addNewInformation" tabindex="-1" aria-labelledby="addNewInformationLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h6 class="modal-title" id="addNewInformationLabel">新增</h6>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="font-size: 14px;">
+                <div class="container-fluid">
+                    <div class="row row-cols-1 row-cols-md-2 gy-3">
+                        <div class="col">
+                            <span style="color: red;">*</span>
+                            <label for="addName" class="form-label">名稱</label>
+                            <input type="text" class="form-control" placeholder="請輸入名稱" id="addName">
+                        </div>
+                        <div class="col">
+                            <span style="color: red;">*</span>
+                            <label for="addClassification" class="form-label">分類</label>
+                            <input type="text" class="form-control" placeholder="請輸入分類" id="addClassification">
+                        </div>
+                        <div class="col">
+                            <span style="color: red;">*</span>
+                            <label for="addStarttime" class="form-label">開始時間</label>
+                            <input type="datetime-local" class="form-control" placeholder="請選擇開始時間" id="addStarttime">
+                        </div>
+                        <div class="col">
+                            <span style="color: red;">*</span>
+                            <label for="addEndtime" class="form-label">結束時間</label>
+                            <input type="datetime-local" class="form-control" placeholder="請選擇結束時間" id="addEndtime">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 pt-3">
+                            <span style="color: red;">*</span>
+                            <span>內文</span>
+                            <div class="mt-2">
+                                <textarea class="mytextarea"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-secondary" onclick='closure()'>關閉</button>
+                <button type="button" class="btn btn-primary" onclick='saveChanges()'>保存</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- 編輯 動態框 -->
+    <div class="modal fade" id="addNewInformation2" tabindex="-1" aria-labelledby="addNewInformation2Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h6 class="modal-title" id="addNewInformation2Label">新增</h6>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="font-size: 14px;">
+                <div class="container-fluid">
+                    <div class="row row-cols-1 row-cols-md-2 gy-3">
+                        <div class="col">
+                            <span style="color: red;">*</span>
+                            <label for="addName2" class="form-label">名稱</label>
+                            <input type="text" class="form-control" placeholder="請輸入名稱" id="addName2">
+                        </div>
+                        <div class="col">
+                            <span style="color: red;">*</span>
+                            <label for="addClassification2" class="form-label">分類</label>
+                            <input type="text" class="form-control" placeholder="請輸入分類" id="addClassification2">
+                        </div>
+                        <div class="col">
+                            <span style="color: red;">*</span>
+                            <label for="addStarttime2" class="form-label">開始時間</label>
+                            <input type="datetime-local" class="form-control" placeholder="請選擇開始時間" id="addStarttime2">
+                        </div>
+                        <div class="col">
+                            <span style="color: red;">*</span>
+                            <label for="addEndtime2" class="form-label">結束時間</label>
+                            <input type="datetime-local" class="form-control" placeholder="請選擇結束時間" id="addEndtime2">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 pt-3">
+                            <span style="color: red;">*</span>
+                            <span>內文</span>
+                            <div class="mt-2">
+                                <textarea class="mytextarea2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-secondary" onclick='closure2()'>關閉</button>
+                <button type="button" class="btn btn-primary" onclick='saveChanges2(event)'>保存</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+
+
+
+
+
+
+
+    <!--ＪＱ的核心-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <!-- sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- flatpickr 時間 插件-->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.7.13/tinymce.min.js"></script>
+
+    <!--自己-->
+    <script src="./dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 共用 layout js -->
+    <script src="./js/layout.js"></script>
+  
+
+
+
+
+
+
+    <script>
+        // document.addEventListener('DOMContentLoaded', function () {
+            let ChineseLocale = {
+                weekdays: {
+                    shorthand: ['日', '一', '二', '三', '四', '五', '六'],
+                    longhand: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+                },
+                months: {
+                    shorthand: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+                    longhand: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+                },
+                ordinal: function () {
+                    return '日';
+                },
+                rangeSeparator: ' 至 ',
+                weekAbbreviation: '週',
+                scrollTitle: '滾動切換',
+                toggleTitle: '點擊切換 12/24 小時時制',
+                amPM: ['上午', '下午']
+            };
+
+            // 初始化 Flatpickr 開始時間
+            let flatpickrInstance1 = flatpickr('#addStarttime', {
+                enableTime: true,       // 启用时间选择
+                dateFormat: 'Y/m/d H:i', // 日期时间格式
+                locale: ChineseLocale,   // 使用中文语言包
+                altInput: true,          // 在文本框旁显示选择的日期
+                altFormat: 'Y/m/d H:i',  // 文本框中显示的日期时间格式
+                time_24hr: false,        // 使用12小时制而非24小时制
+                inline: false,           // 非内联模式，即弹出式
+                disableMobile: true      // 禁用移动设备优化
+            });
+
+            // 初始化 Flatpickr 結束時間
+            let flatpickrInstance2 = flatpickr('#addEndtime', {
+                enableTime: true,       // 启用时间选择
+                dateFormat: 'Y/m/d H:i', // 日期时间格式
+                locale: ChineseLocale,   // 使用中文语言包
+                altInput: true,          // 在文本框旁显示选择的日期
+                altFormat: 'Y/m/d H:i',  // 文本框中显示的日期时间格式
+                time_24hr: false,        // 使用12小时制而非24小时制
+                inline: false,           // 非内联模式，即弹出式
+                disableMobile: true      // 禁用移动设备优化
+            });
+            
+            // 初始化 Flatpickr 開始時間2
+            let flatpickrInstance3 = flatpickr('#addStarttime2', {
+                enableTime: true,       // 启用时间选择
+                dateFormat: 'Y/m/d H:i', // 日期时间格式
+                locale: ChineseLocale,   // 使用中文语言包
+                altInput: true,          // 在文本框旁显示选择的日期
+                altFormat: 'Y/m/d H:i',  // 文本框中显示的日期时间格式
+                time_24hr: false,        // 使用12小时制而非24小时制
+                inline: false,           // 非内联模式，即弹出式
+                disableMobile: true      // 禁用移动设备优化
+            });
+
+            // 初始化 Flatpickr 結束時間2
+            let flatpickrInstance4 = flatpickr('#addEndtime2', {
+                enableTime: true,       // 启用时间选择
+                dateFormat: 'Y/m/d H:i', // 日期时间格式
+                locale: ChineseLocale,   // 使用中文语言包
+                altInput: true,          // 在文本框旁显示选择的日期
+                altFormat: 'Y/m/d H:i',  // 文本框中显示的日期时间格式
+                time_24hr: false,        // 使用12小时制而非24小时制
+                inline: false,           // 非内联模式，即弹出式
+                disableMobile: true      // 禁用移动设备优化
+            });
+
+
+
+            // 初始化 TinyMCE 編輯器
+            tinymce.init({
+                min_height: 200,// 编辑器的最小高度为 400 像素
+
+                // images_upload_url: 'https://tinymce-playground.firebaseapp.com/upload.js',
+                // images_upload_base_path: 'https://tinymce-playground.firebaseapp.com/uploads',
+                // images_upload_credentials: true,
+
+                //images_upload_url: '/upload/image',// 上传图像的处理 URL，替换为您实际的处理图像的后端接口地址
+                selector: '.mytextarea',// 指定要转换为 TinyMCE 编辑器的 textarea 的类名或 ID
+                removed_menuitems: 'newdocument',// 移除编辑器菜单中的 "New Document" 选项
+                browser_spellcheck: true,// 启用浏览器的拼写检查功能
+                branding: false,// 禁用编辑器右下角的 TinyMCE 商标
+
+
+                // 加载的插件列表
+                plugins: [
+                'advlist emoticons textcolor autolink lists  charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table contextmenu paste'
+                ],
+
+                // 定制编辑器工具栏的按钮顺序和显示内容
+                toolbar: 'fontselect fontsizeselect emoticons forecolor backcolor insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent ',
+
+                // 颜色选择器中的列数，默认为 9 列
+                textcolor_cols: "9",
+            });
+            
+            // 初始化 TinyMCE 編輯器2
+            tinymce.init({
+                min_height: 200,// 编辑器的最小高度为 400 像素
+
+                // images_upload_url: 'https://tinymce-playground.firebaseapp.com/upload.js',
+                // images_upload_base_path: 'https://tinymce-playground.firebaseapp.com/uploads',
+                // images_upload_credentials: true,
+
+                //images_upload_url: '/upload/image',// 上传图像的处理 URL，替换为您实际的处理图像的后端接口地址
+                selector: '.mytextarea2',// 指定要转换为 TinyMCE 编辑器的 textarea 的类名或 ID
+                removed_menuitems: 'newdocument',// 移除编辑器菜单中的 "New Document" 选项
+                browser_spellcheck: true,// 启用浏览器的拼写检查功能
+                branding: false,// 禁用编辑器右下角的 TinyMCE 商标
+
+
+                // 加载的插件列表
+                plugins: [
+                'advlist emoticons textcolor autolink lists  charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table contextmenu paste'
+                ],
+
+                // 定制编辑器工具栏的按钮顺序和显示内容
+                toolbar: 'fontselect fontsizeselect emoticons forecolor backcolor insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent ',
+
+                // 颜色选择器中的列数，默认为 9 列
+                textcolor_cols: "9",
+            });
+
+
+            
+            // 要生成的物件數量
+            const dataNum = 50;
+            // 假如有資料  用來存放生成的物件的陣列
+            const data = [];
+            // 迴圈生成物件
+            for (let i = 1; i <= dataNum; i++) {
+                if (data) {
+                    const obj = {
+                        name: `哈囉你好嗎`,
+                        Classification: `aa`,
+                        startTime: `2023-06-01 00:00:00`,
+                        endTime: `2023-06-11 00:00:00`,
+                        text: `hello hello 567891011`,
+                    };
+                    data.push(obj);
+                }
+            };
+            // 在tbody渲染畫面 
+            const renderTable = document.getElementById('renderTable');
+            function renderingData(data){
+                let str = '';
+                for (let i = 0; i < data.length; i++) {
+                    str+= `
+                        <tr class="bk">
+                            <td>
+                                ${data[i].name}
+                            </td>
+                            <td>
+                                ${data[i].Classification}
+                            </td>
+                            <td>
+                                ${data[i].startTime}
+                            </td>
+                            <td>
+                                ${data[i].endTime}
+                            </td>
+                            <td>
+                                <span class="badge bg-teal p-2">上架</span>
+                            </td>
+                            <td>
+                                <p class="m-0">${data[i].text}</P>
+                            </td>
+                            <td>                                           
+                                <button type="button" class="btn btn-sm btn-custom-c7faed comPile">編輯</button>
+                                <button type="button" class="btn btn-sm btn-custom-fee1e5 deLeTe">刪除</button>
+                            </td>
+                        </tr>
+                    `;    
+                }
+                renderTable.innerHTML = str;                                   
+            };
+            // 初始化
+            renderingData(data);
+
+
+            // 索引
+            let indexs = '';
+            // 使用事件代理處理按鈕點擊事件
+            renderTable.addEventListener('click', function (e) {
+                const blocks = e.target.closest('.bk'); // 獲取最近的 <tr> 元素
+                const index = Array.from(renderTable.querySelectorAll('.bk')).indexOf(blocks); // 獲取當前行的索引
+                indexs= index;
+
+                if (e.target.classList.contains('comPile')) {
+                    if (index > -1) {
+                        //renderingData(data); // 重新渲染表格
+                        console.log('Updated index:', index);
+
+                        // 取得模態框元素
+                        const modalElement = document.getElementById('addNewInformation2');
+                        // 初始化模態框
+                        const modal = new bootstrap.Modal(modalElement);
+                        modal.show();
+
+
+                        const addName2 = document.getElementById('addName2');
+                        const addClassification2 = document.getElementById('addClassification2');
+                        const addStarttime2 = document.getElementById('addStarttime2');
+                        const addEndtime2 = document.getElementById('addEndtime2');
+
+
+                        addName2.value = data[index].name;
+                        addClassification2.value = data[index].Classification;
+                        flatpickrInstance3.setDate(data[index].startTime);
+                        flatpickrInstance4.setDate(data[index].endTime);
+                    }
+                }else if (e.target.classList.contains('deLeTe')) {
+                    console.log(123);
+                    data.splice(index,1);// 刪除
+                    renderingData(data); // 重新渲染表格                                    
+                    showPage(currentPage);// 重新顯示目前的區塊                                        
+                    document.getElementById('block-count').textContent = `共 ${bk.length} 項`;// 更新區塊數量顯示
+                    console.log('Updated index:', index);
+                };
+            });
+
+
+            // 取內容
+            const queryName = document.getElementById('queryName');
+            const queryId = document.getElementById('queryId');
+
+            // 取查詢按鈕
+            const captureButton = document.getElementById('captureButton');
+            // 按鈕click事件
+            captureButton.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                if (queryName.value.trim() === '' || queryId.value.trim() === '') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '錯誤',
+                        text: '請填寫正確資料或者欄位不能空填'
+                    });   
+                    return;  
+                }
+
+                console.log(`名稱: ${queryName.value}`);
+                console.log(`ID: ${queryId.value}`);
+
+                // 定義取內容
+                const classificationKeyword = queryName.value.trim().toLowerCase();
+                const textKeyword = queryId.value.trim().toLowerCase();
+
+                let results;
+                // 否則過濾資料
+                results = data.filter(item => 
+                    (classificationKeyword === '' || item.name.toLowerCase().includes(classificationKeyword)) &&
+                    (textKeyword === '' || item.Classification.toLowerCase().includes(textKeyword))
+                );
+
+                // 顯示結果
+                if (results.length === 0) {
+                    renderTable.innerHTML = `
+                        <tr>
+                            <td colspan="7">
+                                <div class="no-data">當前無資料</div>
+                            </td>
+                        </tr>
+                    `;
+                    // 更新區塊數量顯示
+                    document.getElementById('block-count').textContent = `共 ${bk.length} 項`;
+                    // 重新顯示目前的區塊
+                    showPage(currentPage);
+                } else {
+                    renderTable.innerHTML = results.map(item => 
+                        `
+                        <tr class="bk">
+                            <td>
+                                 ${item.name}
+                            </td>
+                            <td>
+                                ${item.Classification}
+                            </td>
+                            <td>
+                                ${item.startTime}
+                            </td>
+                            <td>
+                                ${item.endTime}
+                            </td>
+                            <td>
+                                <span class="badge bg-teal p-2">上架</span>
+                            </td>
+                            <td>
+                                <p class="m-0">${item.text}}</P>
+                            </td>
+                            <td>                                           
+                                <button type="button" class="btn btn-sm btn-custom-c7faed comPile">編輯</button>
+                                <button type="button" class="btn btn-sm btn-custom-fee1e5 deLeTe">刪除</button>
+                            </td>
+                        </tr>
+                        `
+                    ).join('');
+                    // 更新區塊數量顯示
+                    document.getElementById('block-count').textContent = `共 ${bk.length} 項`;
+                    // 重新顯示目前的區塊 & 顯示指定數量的區塊
+                    showBlocks(10);
+                }
+            });
+
+            // 取 取消按鈕
+            const cancel = document.getElementById('cancel');
+            // 取消按鈕事件
+            cancel.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log('取消搜尋');
+                queryName.value = '';
+                queryId.value = '';
+
+                renderingData(data);
+                // 更新區塊數量顯示
+                document.getElementById('block-count').textContent = `共 ${bk.length} 項`;
+                // 重新顯示目前的區塊
+                showPage(currentPage);
+            });
+
+
+
+            // 獲取 DOM 元素的邏輯抽取到一個輔助函數中
+            function AddName() {
+                return document.getElementById('addName');
+            }
+            function AddClassification() {
+                return document.getElementById('addClassification');
+            }
+            function AddStarttime() {
+                return document.getElementById('addStarttime');
+            }
+            function AddEndtime() {
+                return document.getElementById('addEndtime');
+            }
+            function getEditorContent() {
+                const editor = tinymce.activeEditor.getContent(); // 獲取當前活動的編輯器
+                if (editor) {
+                    return editor; // 返回編輯器內容
+                }
+                return '';
+            }
+
+            // 保存事件1
+            function saveChanges(){
+                const addNAME = AddName();// 輔助函數
+                const addClassificAtion = AddClassification();// 輔助函數
+                const addStartTime = AddStarttime();// 輔助函數
+                const addEndTime = AddEndtime();// 輔助函數
+                const content = getEditorContent(); // 輔助函數
+
+                if (addNAME.value.trim() === ''|| addClassificAtion.value.trim() === ''|| addStartTime.value.trim() === ''|| addEndTime.value.trim() === ''|| content === '') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '錯誤',
+                        text: '請填寫正確資料或者欄位不能空填'
+                    });   
+                    return; 
+                }
+                console.log('新增名稱:',addNAME.value);
+                console.log('新增分類:',addClassificAtion.value);
+                console.log('新增開始時間:',addStartTime.value);
+                console.log('新增結束時間:',addEndTime.value);
+                console.log('新增內容:',content.replace(/<[^>]*>/g, ''));// 移除所有 HTML 標籤
+
+                let obj = {};
+                obj.name = addNAME.value;
+                obj.Classification = addClassificAtion.value;
+                obj.startTime = addStartTime.value;
+                obj.endTime = addEndTime.value;
+                obj.text = content.replace(/<[^>]*>/g, '');// 移除所有 HTML 標籤;
+
+                data.unshift(obj);
+                renderingData(data);
+
+                // 更新區塊數量顯示
+                document.getElementById('block-count').textContent = `共 ${bk.length} 項`;
+                // 重新顯示目前的區塊
+                showPage(currentPage);
+
+                addNAME.value = '';
+                addClassificAtion.value = '';
+                flatpickrInstance1.clear(); // 清除選擇
+                flatpickrInstance2.clear(); // 清除選擇
+                tinymce.activeEditor.setContent(''); // 清空編輯器內容
+
+
+
+                // 關閉 新增帳號 動態框
+                // 取視窗id關閉
+                let modal = document.getElementById('addNewInformation');
+                if (modal) {
+                    let bsModal = bootstrap.Modal.getInstance(modal);
+                    if (bsModal) {
+                        bsModal.hide();
+                    };
+                };
+            };
+
+            // 關閉事件
+            function closure() {
+                console.log('關閉');
+                const addNAME = AddName();// 輔助函數
+                const addClassificAtion = AddClassification();// 輔助函數
+                const addStartTime = AddStarttime();// 輔助函數
+                const addEndTime = AddEndtime();// 輔助函數
+                const content = getEditorContent(); // 輔助函數
+
+                addNAME.value = '';
+                addClassificAtion.value = '';
+                flatpickrInstance1.clear(); // 清除選擇
+                flatpickrInstance2.clear(); // 清除選擇
+                tinymce.activeEditor.setContent(''); // 清空編輯器內容
+
+                // 關閉 批量新增 動態框
+                // 取視窗id關閉
+                let modal = document.getElementById('addNewInformation');
+                if (modal) {
+                    let bsModal = bootstrap.Modal.getInstance(modal);
+                    if (bsModal) {
+                        bsModal.hide();
+                    };
+                };
+            };
+
+            // 保存事件2
+            function saveChanges2(e){
+                const addName2 = document.getElementById('addName2');
+                const addClassification2 = document.getElementById('addClassification2');
+                const addStarttime2 = document.getElementById('addStarttime2');
+                const addEndtime2 = document.getElementById('addEndtime2');
+                const content = getEditorContent(); // 輔助函數
+
+
+                if (addName2.value.trim() === ''|| addClassification2.value.trim() === ''|| addStarttime2.value.trim() === ''|| addEndtime2.value.trim() === ''|| content === '') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '錯誤',
+                        text: '請填寫正確資料或者欄位不能空填'
+                    });   
+                    return; 
+                }
+                console.log('更新名稱:',addName2.value);
+                console.log('更新分類:',addClassification2.value);
+                console.log('更新開始時間:',addStarttime2.value);
+                console.log('更新結束時間:',addEndtime2.value);
+                console.log('更新內容:',content.replace(/<[^>]*>/g, ''));// 移除所有 HTML 標籤
+
+                let obj = {};
+                obj.name = addName2.value;
+                obj.Classification = addClassification2.value;
+                obj.startTime = addStarttime2.value;
+                obj.endTime = addEndtime2.value;
+                obj.text = content.replace(/<[^>]*>/g, '');// 移除所有 HTML 標籤
+
+                data[indexs]= obj;
+                renderingData(data);
+
+                // 重新顯示目前的區塊
+                showPage(currentPage);
+
+                addName2.value = '';
+                addClassification2.value = '';
+                flatpickrInstance3.clear(); // 清除選擇
+                flatpickrInstance4.clear(); // 清除選擇
+                tinymce.activeEditor.setContent(''); // 清空編輯器內容
+
+
+
+                // 關閉 新增帳號 動態框
+                // 取視窗id關閉
+                let modal = document.getElementById('addNewInformation2');
+                if (modal) {
+                    let bsModal = bootstrap.Modal.getInstance(modal);
+                    if (bsModal) {
+                        bsModal.hide();
+                    };
+                };
+            };
+
+            // 關閉事件2
+            function closure2() {
+                console.log('關閉');
+                const addName2 = document.getElementById('addName2');
+                const addClassification2 = document.getElementById('addClassification2');
+                const addStarttime2 = document.getElementById('addStarttime2');
+                const addEndtime2 = document.getElementById('addEndtime2');
+                const editor = tinymce.activeEditor.getContent(); // 獲取當前活動的編輯器
+
+                addName2.value = '';
+                addClassification2.value = '';
+                flatpickrInstance3.clear(); // 清除選擇
+                flatpickrInstance4.clear(); // 清除選擇
+                tinymce.activeEditor.setContent(''); // 清空編輯器內容
+
+                // 關閉 批量新增 動態框
+                // 取視窗id關閉
+                let modal = document.getElementById('addNewInformation2');
+                if (modal) {
+                    let bsModal = bootstrap.Modal.getInstance(modal);
+                    if (bsModal) {
+                        bsModal.hide();
+                    };
+                };
+            };
+
+
+
+            // 分頁製作---開始
+                // 所有內容
+                let bk = document.getElementsByClassName('bk');
+                // 初始每頁顯示的區塊數量
+                let blocksPerPage = 10;
+                // 當前顯示的分頁
+                let currentPage = 1;
+                // 更新區塊數量顯示
+                document.getElementById('block-count').textContent = `共 ${bk.length} 項`;
+    
+                // 初始化顯示第一頁的區塊
+                showPage(currentPage);
+    
+                // 動態生成分頁按鈕
+                function generatePagination() {
+                    // 幾筆資料 除以 顯示的區塊數量
+                    const pageCount = Math.ceil(bk.length / blocksPerPage);
+    
+                    // 分頁顯示  幾個區塊
+                    const maxVisible = 2;
+                    let paginationHTML = '';
+    
+                    // 添加前一頁按鈕
+                    if (currentPage > 1) {
+                        paginationHTML += `<button onclick="showPage(${currentPage - 1})">«</button>`;
+                    } else {
+                        paginationHTML += `<button class="disabled">«</button>`;
+                    };
+    
+    
+                    // 計算顯示的分頁範圍
+                    let startPage = 1;
+                    let endPage = pageCount;
+    
+                    if (pageCount > maxVisible) {
+                        const halfVisible = Math.floor(maxVisible / 2);
+                        if (currentPage <= halfVisible) {
+                            // 當前頁面位於最前面部分
+                            endPage = maxVisible;
+                        } else if (currentPage + halfVisible >= pageCount) {
+                            // 當前頁面位於最後面部分
+                            startPage = pageCount - maxVisible + 1;
+                            endPage = pageCount;
+                        } else {
+                            // 當前頁面在中間部分
+                            startPage = currentPage - halfVisible;
+                            endPage = currentPage + halfVisible;
+                        };
+                    };
+    
+    
+                    // 添加前面省略號
+                    if (startPage > 1) {
+                        paginationHTML += `<button onclick="showPage(1)">1</button>`;
+                        if (startPage > 2) {
+                            paginationHTML += `<button onclick="showPage(${startPage - 1})" class="ellipsis">...</button>`;
+                        };
+                    };
+    
+                    // 添加頁碼按鈕
+                    for (let i = startPage; i <= endPage; i++) {
+                        if (i === currentPage) {
+                            paginationHTML += `<button class="active">${i}</button>`;
+                        } else {
+                            paginationHTML += `<button onclick="showPage(${i})">${i}</button>`;
+                        };
+                    };
+    
+                    // 添加後面省略號
+                    if (endPage < pageCount) {
+                        if (endPage < pageCount - 1) {
+                            paginationHTML += `<button onclick="showPage(${endPage + 1})" class="ellipsis">...</button>`;
+                        };
+                        paginationHTML += `<button onclick="showPage(${pageCount})">${pageCount}</button>`;
+                    };
+    
+                    // 添加下一頁按鈕
+                    if (currentPage < pageCount) {
+                        paginationHTML += `<button onclick="showPage(${currentPage + 1})">»</button>`;
+                    } else {
+                        paginationHTML += `<button class="disabled">»</button>`;
+                    };
+    
+                    document.getElementById('pagination').innerHTML = paginationHTML;
+                };
+    
+                // 顯示指定分頁的區塊
+                function showPage(pageNumber) {
+                    currentPage = pageNumber; // 更新當前分頁
+    
+                    let startIndex = (pageNumber - 1) * blocksPerPage;
+                    let endIndex = startIndex + blocksPerPage;
+    
+                    // 隱藏所有區塊
+                    for (let i = 0; i < bk.length; i++) {
+                        // bk[i].style.display = 'none';
+                        bk[i].classList.add('d-none');
+                    };
+    
+                    // 顯示該分頁對應的區塊
+                    for (let i = startIndex; i < endIndex && i < bk.length; i++) {
+                        // bk[i].style.display = 'block';
+                        bk[i].classList.remove('d-none');
+                    };
+    
+                    // 重新生成分頁按鈕
+                    generatePagination();
+                };
+    
+                // 顯示指定數量的區塊
+                function showBlocks(count) {
+                    blocksPerPage = count; // 更新每頁顯示的區塊數量
+                    currentPage = 1; // 重置當前分頁為第一頁
+                    showPage(currentPage); // 重新顯示第一頁的區塊
+                    generatePagination(); // 重新生成分頁按鈕
+    
+                    // 顯示指定數量 的文字變更
+                    const toggleOptionsBtn = document.getElementById('toggleOptionsBtn');
+                    toggleOptionsBtn.textContent = `顯示 ${count} 項`;
+                };
+            // 分頁製作---結束
+        // });
+    </script>
+
+
+
+
+</body>
+</html>

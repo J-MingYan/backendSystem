@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>(2)Line業務對話系統</title>
+  <meta property="og:locale" content="zh_TW" />
+
+
+  <!-- Bootstrap5 Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+  <!-- Flatpickr -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+  <!-- 自己ＣＳＳ -->
+  <link rel="stylesheet" href="./css/all-Bootstrap-Sass.css">
+</head>
+<style>
+    /* 或者使用 overflow-wrap: break-word; */
+    th, td {
+        word-wrap: break-word; 
+    }
+</style>
+<body style="padding-top: 85px;">
+    <!-- 導覽列 -->
+    <header class="position-relative position-fixed w-100 top-0" style="z-index: 100;">
+        <nav class="navbar navbar-light shadow" style="background-color: #37424c;">
+            <div class="container-fluid justify-content-start">
+                <!-- LOGO -->
+                <h1 class="ms-2 mb-0">
+                    <a class="navbar-brand logo" href="#">logo</a>
+                </h1>
+                <!-- 按鈕 -->
+                <button class="border-0 ms-2 px-3 lineBtn direction" type="button" style="background-color: #37424c;">
+                    <i class="bi bi-list text-white fs-2" style="position: relative; z-index: -1;"></i>
+                </button>
+                <div class="lantern-announcement-box">
+                    <!-- ？ -->
+                </div>
+                <!-- 客服人員 -->
+                <div class="customerService p-3 direction">
+                    <img src="./images/img/user-1.7458f61d.jpg" alt="客服人員圖片" class="customerServiceImg">
+                    <span class="customerServiceName">
+                        jc
+                        <i class="bi bi-chevron-down"></i>
+                    </span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 使用者設定 -->
+        <div class="userSettings rounded-3">
+            <h6  class="userSettingsItile">Welcome !</h6>
+            <a href="./index14.html" target="_blank" class="userSettingsLink"><i class="bi bi-gear-wide-connected me-2"></i>Setting</a>
+            <a href="./index15.html" target="_blank" class="userSettingsLink"><i class="bi bi-lock-fill me-2"></i>修改密碼</a>
+            <hr class="my-1">
+            <a href="#" class="userSettingsLink mb-2" id="signOut"><i class="bi bi-door-open me-2"></i>登出</a>
+        </div>
+    </header>
+
+    <!-- 業務對話系統樣式 -->
+    <section class="d-flex">
+        <div class="businessDialogueSystem ">
+            <button class="btn businessDialogueSystemBtn text-start" type="button">
+                <i class="bi bi-headset me-2 fs-5"></i>
+                <span>業務對話系統</span>
+            </button>
+            <ul class="list-unstyled businessDialogueSystemBox">
+                <li><a href="./index2.html" class="businessDialogueSystemLink">對話列表</a></li>
+                <li><a href="./index3.html" class="businessDialogueSystemLink">對話標籤統計</a></li>
+                <li><a href="./index4.html" class="businessDialogueSystemLink">對話紀錄檢討表</a></li>
+                <li><a href="./index5.html" class="businessDialogueSystemLink">人員錯誤檢討</a></li>
+                <li><a href="./index6.html" class="businessDialogueSystemLink active">權限設定</a></li>
+                <li><a href="./index7.html" class="businessDialogueSystemLink">Line名稱列表</a></li>
+                <li><a href="./index8.html" class="businessDialogueSystemLink">Line名單管理</a></li>
+                <li><a href="./index9.html" class="businessDialogueSystemLink">Line名單群組列表</a></li>
+                <li><a href="./index10.html" class="businessDialogueSystemLink">問題分類</a></li>
+                <li><a href="./index11.html" class="businessDialogueSystemLink">對話評分表</a></li>
+                <li><a href="./index12.html" class="businessDialogueSystemLink">编辑歡迎語</a></li>
+                <li><a href="./index13.html" class="businessDialogueSystemLink">跑馬燈公告</a></li>
+            </ul>
+        </div>
+
+        <!-- 資訊欄位 -->
+        <div class="informationField">
+            <div class="container px-5 pb-5">
+                <div class="row">
+                    <div class="col-12 my-4 fw-light">
+                        <span>業務對話系統</span>
+                        <i class="bi bi-chevron-right"></i>
+                        <span>權限設定</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 bg-white p-4 rounded-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+                        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 align-items-end">
+                            <!-- 帳號 -->
+                            <div class="col">
+                                <label for="accountNumber" class="col-form-label text-nowrap">帳號</label>
+                                <input type="text" class="form-control" id="accountNumber" placeholder="請輸入帳號">
+                            </div>
+                            <!-- 名稱 -->
+                            <div class="col">
+                                <label for="name" class="col-form-label text-nowrap">名稱</label>
+                                <input type="text" class="form-control" id="name" placeholder="請輸入名稱">
+                            </div>
+                            <!-- Line Token -->
+                            <div class="col">
+                                <label for="lineToken" class="col-form-label text-nowrap">Line Token</label>
+                                <input type="text" class="form-control" id="lineToken" placeholder="請輸入Line Token">
+                            </div>
+                            <!-- 查詢 -->
+                            <div class="col">
+                                <button type="button" class="btn btn-primary mt-3" id="captureButton">
+                                    查詢
+                                    <i class="bi bi-search ms-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12 d-flex flex-column flex-md-row">
+                                <!-- 新增帳號 -->
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addAccount">
+                                    新增
+                                    <i class="bi bi-plus-circle-fill ms-1"></i>
+                                </button>
+                                <!-- 批量新增 -->
+                                <button type="button" class="btn btn-text-custom-Purple" data-bs-toggle="modal" data-bs-target="#addInBatches">
+                                    批量新增
+                                    <i class="bi bi-plus-square-fill ms-1"></i>
+                                </button>
+                                <!-- 修改密碼 -->
+                                <button type="button" class="btn btn-coffee" data-bs-toggle="modal" data-bs-target="#changePassword">
+                                    修改密碼
+                                    <i class="bi bi-pencil-fill ms-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <!-- <div class="no-data">當前無資料</div> -->
+                            
+                            <div class="overflow-hidden p-3" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+                                <div class="col-12 fw-light table-responsive" style=" font-size: 14px;">
+                                    <table class="table align-middle table-borderless table-striped table-hover">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th scope="col" width="200" class="fixed-left-bg">帳號名稱</th>
+                                                <th scope="col" width="210">部門(職稱)</th>
+                                                <th scope="col" width="250">身份</th>
+                                                <th scope="col" width="180">業務</th>
+                                                <th scope="col" width="90">Line驗證</th>
+                                                <th scope="col" width="90">Bot運行</th>
+                                                <th scope="col" width="210">Line帳號</th>
+                                                <th scope="col" width="150">Line密碼</th>
+                                                <th scope="col" width="180">Line Token</th>
+                                                <th scope="col" width="210">代理名稱</th>
+                                                <th scope="col" width="240" class="fixed-right-bg">操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="renderTable">
+                                            <!-- 未填寫 -->
+                                            <!-- <tr class="border-0 border-bottom">
+                                                <th scope="row" class="fixed-left">
+                                                    <div class="d-flex align-items-end">
+                                                        <div style="width: 180px;">
+                                                            <div class="text-secondary">ubc78a8c0fc9e3b467cd89974f6766451</div>
+                                                            <div class="text-primary">1201-8</div>
+                                                        </div>
+                                                        <div class="change1" style="cursor: pointer;">
+                                                            <i class="bi bi-pencil-square fs-4 text-teal"></i>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <td>
+                                                    <select class="form-select" style="width: 210px;">
+                                                        <option value="1">客服部 (LINE服務人員)</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex text-nowrap" style="width: 250px;">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="state1" id="state1-1" value="option1" checked>
+                                                            <label class="form-check-label" for="state1-1">初級</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="state1" id="state1-2" value="option2">
+                                                            <label class="form-check-label" for="state1-2">中級</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="state1" id="state1-3" value="option3">
+                                                            <label class="form-check-label" for="state1-3">高級</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="state1" id="state1-4" value="option4">
+                                                            <label class="form-check-label" for="state1-4">特級</label>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center justify-content-between text-nowrap pb-1" style="width: 100px;">
+                                                        <div>卡洛斯</div>
+                                                        <div class="change2" style="cursor: pointer;">
+                                                            <i class="bi bi-pencil-square fs-4 text-teal"></i>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="width: 90px;">
+                                                        <button type="button" class="btn btn-sm btn-custom-c7faed w-100">以驗證</button>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="width: 90px;">
+                                                        <button type="button" class="btn btn-sm btn-custom-fee1e5 w-100">暫停</button>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="width: 210px;">
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="width: 150px;">
+                                                        <input type="password" class="form-control">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="width: 180px;">
+                                                        <span class="badge bg-danger">未填寫</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="width: 210px;">
+                                                        <input type="text" class="form-control" value="1201-8" style=" font-size: 14px;">
+                                                    </div>
+                                                </td>
+                                                <td class="fixed-right">
+                                                    <div class="d-flex justify-content-around" style="width: 240px;">
+                                                        <button type="button" class="btn btn-sm btn-custom-c7faed">保存</button>
+                                                        <button type="button" class="btn btn-sm btn-text-custom-Purple">加好友紀錄</button>
+                                                        <button type="button" class="btn btn-sm btn-custom-fee1e5">刪除</button>
+                                                    </div>
+                                                </td>
+                                            </tr> -->
+                                            <!-- 已填寫 -->
+                                            <!-- <tr class="border-0 border-bottom">
+                                                <th scope="row" class="fixed-left">
+                                                    <div class="d-flex align-items-end">
+                                                        <div style="width: 180px;">
+                                                            <div class="text-secondary">ubc78a8c0fc9e3b467cd89974f6766451</div>
+                                                            <div class="text-primary">1201-8</div>
+                                                        </div>
+                                                        <div class="change1" style="cursor: pointer;">
+                                                            <i class="bi bi-pencil-square fs-4 text-teal"></i>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <td>
+                                                    <select class="form-select" style="width: 210px;">
+                                                        <option value="1">客服部 (LINE服務人員)</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex text-nowrap" style="width: 250px;">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="state2" id="state2-1" value="option1" checked>
+                                                            <label class="form-check-label" for="state2-1">初級</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="state2" id="state2-2" value="option2">
+                                                            <label class="form-check-label" for="state2-2">中級</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="state2" id="state2-3" value="option3">
+                                                            <label class="form-check-label" for="state2-3">高級</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="state2" id="state2-4" value="option4">
+                                                            <label class="form-check-label" for="state2-4">特級</label>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center justify-content-between text-nowrap pb-1" style="width: 100px;">
+                                                        <div>卡洛斯</div>
+                                                        <div class="change2" style="cursor: pointer;">
+                                                            <i class="bi bi-pencil-square fs-4 text-teal"></i>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="width: 90px;">
+                                                        <button type="button" class="btn btn-sm btn-custom-c7faed w-100">以驗證</button>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="width: 90px;">
+                                                        <button type="button" class="btn btn-sm btn-custom-fee1e5 w-100">暫停</button>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="width: 210px;">
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="width: 150px;">
+                                                        <input type="password" class="form-control">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="width: 180px;">
+                                                        <span class="badge bg-teal">已填寫</span>
+                                                        <button type="button" class="btn btn-sm btn-outline-info">查看</button>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div style="width: 210px;">
+                                                        <input type="text" class="form-control" value="1201-8" style=" font-size: 14px;">
+                                                    </div>
+                                                </td>
+                                                <td class="fixed-right">
+                                                    <div class="d-flex justify-content-around" style="width: 240px;">
+                                                        <button type="button" class="btn btn-sm btn-custom-c7faed">保存</button>
+                                                        <button type="button" class="btn btn-sm btn-text-custom-Purple">加好友紀錄</button>
+                                                        <button type="button" class="btn btn-sm btn-custom-fee1e5">刪除</button>
+                                                    </div>
+                                                </td>
+                                            </tr> -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-12 d-flex align-items-center">
+                                    <!-- 共幾項資料 -->
+                                    <div id="block-count">共79項</div>
+                                    <!-- 顯示項目數量 -->
+                                    <div class="btn-group ms-3">
+                                        <button type="button" class="btn btn-custom-c7faed dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="toggleOptionsBtn">
+                                            顯示 10 項
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                          <li><a class="dropdown-item" href="#" onclick="showBlocks(10)">顯示 10 項</a></li>
+                                          <li><a class="dropdown-item" href="#" onclick="showBlocks(20)">顯示 20 項</a></li>
+                                          <li><a class="dropdown-item" href="#" onclick="showBlocks(30)">顯示 30 項</a></li>
+                                        </ul>
+                                    </div>
+                                    <!-- 這裡將由 JavaScript 生成分頁按鈕 -->
+                                    <div id="pagination" class="pagination">
+                                        <!-- ... -->
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </section>
+    
+
+    <!-- 新增帳號 動態框 -->
+    <div class="modal fade" id="addAccount" tabindex="-1" aria-labelledby="addAccountLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h6 class="modal-title" id="addAccountLabel">新增帳號</h6>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="font-size: 14px;">
+                <div class="container-fluid">
+                    <div class="row row-cols-1 row-cols-md-2 gy-3">
+                        <div class="col">
+                            <span style="color: red;">*</span>
+                            <label for="addName" class="form-label">名稱</label>
+                            <input type="text" class="form-control" placeholder="請輸入使用者名稱" id="addName">
+                        </div>
+                        <div class="col">
+                            <span style="color: red;">*</span>
+                            <label for="AddAccount" class="form-label">帳號</label>
+                            <input type="text" class="form-control" placeholder="請輸入帳號" id="AddAccount">
+                        </div>
+                        <div class="col">
+                            <span style="color: red;">*</span>
+                            <label for="addPassword" class="form-label">密碼</label>
+                            <input type="password" class="form-control" placeholder="請輸入密碼" id="addPassword">
+                        </div>
+                        <div class="col">
+                            <span style="color: red;">*</span>
+                            <label for="confirmPassword" class="form-label">確認密碼</label>
+                            <input type="password" class="form-control" placeholder="請再次輸入密碼" id="confirmPassword">
+                        </div>
+                        <div class="col">
+                            <span style="color: red;">*</span>
+                            <label for="departMent" class="col-form-label text-nowrap">部門(職稱)</label>
+                            <select class="form-select"id="departMent">
+                                <option value="" selected disabled hidden>請選擇部門(職稱)</option>
+                                <option value="1">客服部 (LINE服務人員)</option>
+                            </select>
+                        </div>
+                        <div class="col d-flex flex-column justify-content-around">
+                            <div>
+                                <div>
+                                    <span style="color: red;">*</span>
+                                    <span>身份</span>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="state" id="st1" value="option1" checked>
+                                    <label class="form-check-label" for="st1">初級</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="state" id="st2" value="option2">
+                                    <label class="form-check-label" for="st2">中級</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="state" id="st3" value="option3">
+                                    <label class="form-check-label" for="st3">高級</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="state" id="st4" value="option4">
+                                    <label class="form-check-label" for="st4">特級</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="addBusiness" class="form-label">業務</label>
+                            <input type="text" class="form-control" placeholder="請輸入業務" id="addBusiness">
+                        </div>
+                        <div class="col">
+                            <label for="addEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" placeholder="請輸入Email" id="addEmail">
+                        </div>
+                        <div class="col">
+                            <label for="addLineAccount" class="form-label">Line帳號</label>
+                            <input type="email" class="form-control" placeholder="Line帳號" id="addLineAccount">
+                        </div>
+                        <div class="col">
+                            <label for="addLinePasswordt" class="form-label">Line密碼</label>
+                            <input type="password" class="form-control" placeholder="Line密碼" id="addLinePasswordt">
+                        </div>
+                        <div class="col">
+                            <label for="addLineToken" class="form-label">Line Token</label>
+                            <input type="email" class="form-control" placeholder="請輸入Line Token" id="addLineToken">
+                        </div>
+                        <div class="col">
+                            <label for="addAgentName" class="form-label">代理名稱</label>
+                            <input type="email" class="form-control" placeholder="請輸入代理名稱" id="addAgentName">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary" onclick='saveChanges3()'>保存</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- 批量新增 動態框 -->
+    <div class="modal fade" id="addInBatches" tabindex="-1" aria-labelledby="addInBatchesLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h6 class="modal-title" id="addInBatchesLabel">批量新增</h6>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="font-size: 14px;">
+                <div class="container-fluid">
+                    <div class="row row-cols-1 gy-3">
+                        <div class="col">
+                            <span style="color: red;">*</span>
+                            <label for="batchLineToken">Line Token</label>
+                            <textarea class="form-control" id="batchLineToken" style="height: 130px;"></textarea>
+                        </div>
+                        <div class="col">
+                            <span style="color: red;">*</span>
+                            <label for="batchAgentName" class="form-label">代理名稱</label>
+                            <input type="text" class="form-control" id="batchAgentName">
+                        </div>
+                        <div class="col">
+                            <label for="batchBusinessName" class="form-label">業務名稱</label>
+                            <input type="text" class="form-control" id="batchBusinessName">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary" onclick='saveChanges4()'>保存</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- 修改密碼 動態框 -->
+    <div class="modal fade" id="changePassword" tabindex="-1" aria-labelledby="changePasswordLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h6 class="modal-title" id="changePasswordLabel">修改密碼</h6>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="font-size: 14px;">
+                <div class="container-fluid">
+                    <div class="row row-cols-1 gy-3">
+                        <div class="col">
+                            <span style="color: red;">*</span>
+                            <label for="modifyAccount" class="form-label">帳號</label>
+                            <input type="text" class="form-control" id="modifyAccount" placeholder="請輸入帳號">
+                        </div>
+                        <div class="col">
+                            <span style="color: red;">*</span>
+                            <label for="change_Password" class="form-label">密碼</label>
+                            <input type="text" class="form-control" id="change_Password" placeholder="請輸入密碼">
+                        </div>
+                        <div class="col">
+                            <span style="color: red;">*</span>
+                            <label for="confirm_Password" class="form-label">確認密碼</label>
+                            <input type="text" class="form-control" id="confirm_Password" placeholder="請輸入密碼">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary" onclick='saveChanges5()'>保存</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- 變更代理名稱 動態框 -->
+    <div class="modal fade" id="updateNamemodal" tabindex="-1" aria-labelledby="updateNamemodalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h6 class="modal-title" id="updateNamemodalLabel">修改名稱</h6>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <span style="color: red;">*</span>
+                名稱
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="請輸入" id="changeText1">
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary" onclick='saveChanges1()'>保存</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- 變更業務名稱 動態框 -->
+    <div class="modal fade" id="changeBusiness" tabindex="-1" aria-labelledby="changeBusinessLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h6 class="modal-title" id="changeBusinessLabel">修改業務</h6>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <span style="color: red;">*</span>
+                業務
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="請輸入" id="changeText2">
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                <button type="button" class="btn btn-primary" onclick='saveChanges2()'>保存</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!--ＪＱ的核心-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <!-- sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- flatpickr 時間 插件-->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <!--自己-->
+    <script src="./dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 共用 layout js -->
+    <script src="./js/layout.js"></script>
+
+
+
+
+    <script>
+        // 取得查詢按鈕
+        const captureButton = document.getElementById('captureButton');
+        // 查詢按鈕事件
+        captureButton.addEventListener('click', (e) => {
+            const accountNumber = document.getElementById('accountNumber');
+            const name = document.getElementById('name');
+            const lineToken = document.getElementById('lineToken');
+
+            console.log(accountNumber.value);
+            console.log(name.value);
+            console.log(lineToken.value);
+        });
+
+        
+        // 新增帳號事件
+        function saveChanges3() {
+            // 獲取所有需要的欄位
+            const addName = document.querySelector('#addName');
+            const addAccount = document.querySelector('#AddAccount');
+            const addPassword = document.querySelector('#addPassword');
+            const confirmPassword = document.querySelector('#confirmPassword');
+            const departMent = document.querySelector('#departMent');
+            const addBusiness = document.querySelector('#addBusiness');
+            const addEmail = document.querySelector('#addEmail');
+            const addLineAccount = document.querySelector('#addLineAccount');
+            const addLinePasswordt = document.querySelector('#addLinePasswordt');
+            const addLineToken = document.querySelector('#addLineToken');
+            const addAgentName = document.querySelector('#addAgentName');
+
+            // 獲取身份欄位的選中值
+            // const stateRadios = document.querySelectorAll('input[name="state"]');
+            const selectedState = document.querySelector('input[name="state"]:checked');
+            // 獲取選中的身份值
+            const stateValue = selectedState ? selectedState.value : '';
+
+
+            if (addName.value.trim() === ''|| addAccount.value.trim() === ''|| addPassword.value.trim() === ''|| confirmPassword.value.trim() ===''|| departMent.value.trim() === ''|| addBusiness.value.trim() === ''|| addEmail.value.trim() === ''|| addLineAccount.value.trim() === ''|| addLinePasswordt.value.trim() === ''|| addLineToken.value.trim() === ''|| addAgentName.value.trim() === '') {         
+                Swal.fire({
+                    icon: 'error',
+                    title: '錯誤',
+                    text: '請填寫正確資料或者欄位不能空填'
+                });   
+                return;  
+            }else{
+                console.log('儲存成功．．．');
+                console.log('名稱', addName.value);
+                console.log('帳號', addAccount.value);
+                console.log('密碼', addPassword.value);
+                console.log('確認密碼', confirmPassword.value);
+                console.log('部門', departMent.value);
+                console.log('業務', addBusiness.value);
+                console.log('信箱', addEmail.value);
+                console.log('Line帳號', addLineAccount.value);
+                console.log('Line密碼', addLinePasswordt.value);
+                console.log('Line Token', addLineToken.value);
+                console.log('代理名稱', addAgentName.value);
+                console.log('身份', stateValue);
+
+                addName.value = '';
+                addAccount.value = '';
+                addPassword.value = '';
+                confirmPassword.value = '';
+                departMent.value = '';
+                addBusiness.value = '';
+                addEmail.value = '';
+                addLineAccount.value = '';
+                addLinePasswordt.value = '';
+                addLineToken.value = '';
+                addAgentName.value = '';
+
+                // 關閉 新增帳號 動態框
+                // 取視窗id關閉
+                let modal = document.getElementById('addAccount');
+                if (modal) {
+                    let bsModal = bootstrap.Modal.getInstance(modal);
+                    if (bsModal) {
+                        bsModal.hide();
+                    };
+                };
+            };
+        };
+
+
+        // 批量新增事件
+        function saveChanges4() {
+            const batchLineToken = document.getElementById('batchLineToken');
+            const batchAgentName = document.getElementById('batchAgentName');
+            const batchBusinessName = document.getElementById('batchBusinessName');
+
+            if (batchLineToken.value.trim() === ''|| batchAgentName.value.trim() === ''|| batchBusinessName.value.trim() === '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: '錯誤',
+                    text: '請填寫正確資料或者欄位不能空填'
+                });   
+                return; 
+            }else{
+                console.log('儲存成功．．．');
+                console.log('Line Token', batchLineToken.value);
+                console.log('代理名稱', batchAgentName.value);
+                console.log('業務名稱', batchBusinessName.value);
+
+                batchLineToken.value = '';
+                batchAgentName.value = '';
+                batchBusinessName.value = '';
+
+                // 關閉 新增帳號 動態框
+                // 取視窗id關閉
+                let modal = document.getElementById('addInBatches');
+                if (modal) {
+                    let bsModal = bootstrap.Modal.getInstance(modal);
+                    if (bsModal) {
+                        bsModal.hide();
+                    };
+                };
+            };
+        };
+
+
+        // 修改密碼事件
+        function saveChanges5() {
+            const modifyAccount = document.getElementById('modifyAccount');
+            const change_Password = document.getElementById('change_Password');
+            const confirm_Password = document.getElementById('confirm_Password');
+
+            if (modifyAccount.value.trim() === ''|| change_Password.value.trim() === ''|| confirm_Password.value.trim() === '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: '錯誤',
+                    text: '請填寫正確資料或者欄位不能空填'
+                });   
+                return; 
+            }else{
+                console.log('儲存成功．．．');
+                console.log('帳號', modifyAccount.value);
+                console.log('密碼', change_Password.value);
+                console.log('確認密碼', confirm_Password.value);
+
+                modifyAccount.value = '';
+                change_Password.value = '';
+                confirm_Password.value = '';
+
+                // 關閉 新增帳號 動態框
+                // 取視窗id關閉
+                let modal = document.getElementById('changePassword');
+                if (modal) {
+                    let bsModal = bootstrap.Modal.getInstance(modal);
+                    if (bsModal) {
+                        bsModal.hide();
+                    };
+                };
+            };
+        };
+
+
+        // 全局變數用於儲存按鈕的資料
+        let currentButtonInfo = null;
+        // 要生成的物件數量
+        const dataNum = 50; 
+        // 假如有資料  用來存放生成的物件的陣列
+        const data = [];
+        // 迴圈生成物件
+        for (let i = 1; i <= dataNum; i++) {
+            if (i % 2 === 0) {
+                const obj = {
+                    id: i,
+                    lineToken: false,
+                    accountName: 'ubc78a8c0fc9e3b467cd89974f6766451',
+                    agentName_1: '1201-' + i,
+                    state: `option${Math.floor (Math. random ()* 4)+ 1}`,
+                    business: '卡洛斯',
+                    agentName_2: '1201-' + i
+                };
+                data.push(obj);
+            }
+            else {
+                const obj = {
+                    id: i,
+                    lineToken: true,
+                    accountName: 'ubc78a8c0fc9e3b467cd89974f6766451',
+                    agentName_1: '1201-' + i,
+                    state: `option${Math.floor (Math. random ()* 4)+ 1}`,
+                    business: '卡洛斯',
+                    agentName_2: '1201-' + i
+                };
+                data.push(obj);
+            };
+        };
+        // 在tbody渲染畫面
+        const renderTable = document.getElementById('renderTable');
+        function renderingData(data){
+            let str = ``;
+            for (let I = 0; I < data.length; I++) {    
+                if(data[I].lineToken === true){                
+                    str+=`
+                        <tr class="border-0 border-bottom bloCk">
+                            <th scope="row" class="fixed-left">
+                                <div class="d-flex align-items-end">
+                                    <div style="width: 180px;">
+                                        <div class="text-secondary">${data[I].accountName}</div>
+                                        <div class="text-primary">${data[I].agentName_1}</div>
+                                    </div>
+                                    <div class="change1" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#updateNamemodal">
+                                        <i class="bi bi-pencil-square fs-4 text-teal"></i>
+                                    </div>
+                                </div>
+                            </th>
+                            <td>
+                                <select class="form-select" style="width: 210px;">
+                                    <option value="1">客服部 (LINE服務人員)</option>
+                                </select>
+                            </td>
+                            <td>
+                                <div class="d-flex text-nowrap radio-group" style="width: 250px;">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="state${I}" id="state${I}-1" value="option1" checked>
+                                        <label class="form-check-label" for="state${I}-1">初級</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="state${I}" id="state${I}-2" value="option2">
+                                        <label class="form-check-label" for="state${I}-2">中級</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="state${I}" id="state${I}-3" value="option3">
+                                        <label class="form-check-label" for="state${I}-3">高級</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="state${I}" id="state${I}-4" value="option4">
+                                        <label class="form-check-label" for="state${I}-4">特級</label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center justify-content-between text-nowrap pb-1" style="width: 100px;">
+                                    <div>${data[I].business}</div>
+                                    <div class="change2" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#changeBusiness">
+                                        <i class="bi bi-pencil-square fs-4 text-teal"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="width: 90px;">
+                                    <button type="button" class="btn btn-sm btn-custom-c7faed w-100">以驗證</button>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="width: 90px;">
+                                    <button type="button" class="btn btn-sm btn-custom-fee1e5 w-100">暫停</button>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="width: 210px;">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </td>
+                            <td>
+                                <div style="width: 150px;">
+                                    <input type="password" class="form-control">
+                                </div>
+                            </td>
+                            <td>
+                                <div style="width: 180px;">
+                                    <span class="badge bg-teal">已填寫</span>
+                                    <button type="button" class="btn btn-sm btn-outline-info">查看</button>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="width: 210px;">
+                                    <input type="text" class="form-control" value="${data[I].agentName_2}" style=" font-size: 14px;">
+                                </div>
+                            </td>
+                            <td class="fixed-right">
+                                <div class="d-flex justify-content-around" style="width: 240px;">
+                                    <button type="button" class="btn btn-sm btn-custom-c7faed">保存</button>
+                                    <button type="button" class="btn btn-sm btn-text-custom-Purple">加好友紀錄</button>
+                                    <button type="button" class="btn btn-sm btn-custom-fee1e5">刪除</button>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                    renderTable.innerHTML = str;
+                }
+                else if(data[I].lineToken === false){
+                    str+=`
+                        <tr class="border-0 border-bottom bloCk">
+                            <th scope="row" class="fixed-left">
+                                <div class="d-flex align-items-end">
+                                    <div style="width: 180px;">
+                                        <div class="text-secondary">${data[I].accountName}</div>
+                                        <div class="text-primary">${data[I].agentName_1}</div>
+                                    </div>
+                                    <div class="change1" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#updateNamemodal">
+                                        <i class="bi bi-pencil-square fs-4 text-teal"></i>
+                                    </div>
+                                </div>
+                            </th>
+                            <td>
+                                <select class="form-select" style="width: 210px;">
+                                    <option value="1">客服部 (LINE服務人員)</option>
+                                </select>
+                            </td>
+                            <td>
+                                <div class="d-flex text-nowrap radio-group" style="width: 250px;">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="state${I}" id="state${I}-1" value="option1" checked>
+                                        <label class="form-check-label" for="state${I}-1">初級</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="state${I}" id="state${I}-2" value="option2">
+                                        <label class="form-check-label" for="state${I}-2">中級</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="state${I}" id="state${I}-3" value="option3">
+                                        <label class="form-check-label" for="state${I}-3">高級</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="state${I}" id="state${I}-4" value="option4">
+                                        <label class="form-check-label" for="state${I}-4">特級</label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center justify-content-between text-nowrap pb-1" style="width: 100px;">
+                                    <div>${data[I].business}</div>
+                                    <div class="change2" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#changeBusiness">
+                                        <i class="bi bi-pencil-square fs-4 text-teal"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="width: 90px;">
+                                    <button type="button" class="btn btn-sm btn-custom-c7faed w-100">以驗證</button>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="width: 90px;">
+                                    <button type="button" class="btn btn-sm btn-custom-fee1e5 w-100">暫停</button>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="width: 210px;">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </td>
+                            <td>
+                                <div style="width: 150px;">
+                                    <input type="password" class="form-control">
+                                </div>
+                            </td>
+                            <td>
+                                <div style="width: 180px;">
+                                    <span class="badge bg-danger">未填寫</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="width: 210px;">
+                                    <input type="text" class="form-control" value="${data[I].agentName_2}" style=" font-size: 14px;">
+                                </div>
+                            </td>
+                            <td class="fixed-right">
+                                <div class="d-flex justify-content-around" style="width: 240px;">
+                                    <button type="button" class="btn btn-sm btn-custom-c7faed">保存</button>
+                                    <button type="button" class="btn btn-sm btn-text-custom-Purple">加好友紀錄</button>
+                                    <button type="button" class="btn btn-sm btn-custom-fee1e5">刪除</button>
+                                </div>
+                            </td>
+                        </tr>
+                    `;                    
+                    renderTable.innerHTML = str;
+                }      
+            };
+
+            // 初始化每個 radio group 的狀態 ， 並獲取遠端狀態
+            const radioGroups = document.querySelectorAll('.radio-group');
+            radioGroups.forEach((group, index) => {
+                const radioInputs = group.querySelectorAll('input[type="radio"]');
+                radioInputs.forEach(input => {
+                    if (input.value === data[index].state) {
+                    input.checked = true;
+                    }
+                });
+            });
+
+            // 變更 帳號名稱裡的 代理名稱
+            const change1 = document.querySelectorAll('.change1');
+            for (let i = 0; i < change1.length; i++) {
+                change1[i].addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // console.log('測試change1',i);
+                    currentButtonInfo = i;
+                });            
+            };
+            // 變更 業務名稱
+            const change2 = document.querySelectorAll('.change2');
+            for (let i = 0; i < change2.length; i++) {
+                change2[i].addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // console.log('測試change2',i);
+                    currentButtonInfo = i;
+                });            
+            };
+        };
+        // 初始化
+        renderingData(data);
+
+
+
+        // // 取得所有的 狀態 單選按鈕元素
+        // const radioButtons = document.querySelectorAll('.form-check-input');
+        // const labels = document.querySelectorAll('.form-check-label');
+        // // 為每個單選按鈕添加點擊事件監聽器
+        // radioButtons.forEach((button, inde) => {
+        //     button.addEventListener('click', function() {
+        //         // 移除所有標籤的已選中樣式
+
+        //         // 先恢復所有標籤的顏色
+        //         labels.forEach(function(itme, index){
+        //             itme.classList.remove('text-purple');
+        //         });
+
+        //         // 取得被點擊的標籤並改變顏色
+        //         labels[inde].classList.add('text-purple');
+        //     });
+        // });
+
+
+
+        // 變更代理名稱 動態框 函式
+        function saveChanges1() {
+            // 在这里可以添加保存逻辑
+            const changeText1 = document.getElementById('changeText1');
+
+            if (changeText1.value.trim().replace(/\s*/g,'') === '') {
+                console.log('錯誤唷');
+                return;
+            }
+            else{
+                data[currentButtonInfo].agentName_1 = changeText1.value.trim().replace(/\s*/g,'');
+                renderingData(data);
+                changeText1.value = '';
+
+                // 重新顯示目前的區塊
+                showPage(currentPage);
+
+                // 關閉 變更代理名稱 動態框
+                // 取視窗id關閉
+                let modal = document.getElementById('updateNamemodal');
+                if (modal) {
+                    let bsModal = bootstrap.Modal.getInstance(modal);
+                    if (bsModal) {
+                        bsModal.hide();
+                    };
+                };
+            };
+        };
+
+        // 變更業務名稱 動態框 函式
+        function saveChanges2() {
+            // 在这里可以添加保存逻辑
+            const changeText2 = document.getElementById('changeText2');
+
+            if (changeText2.value.trim().replace(/\s*/g,'') === '') {
+                console.log('錯誤唷');
+                return;
+            }
+            else{
+                data[currentButtonInfo].business = changeText2.value.trim().replace(/\s*/g,'');
+                renderingData(data);
+                changeText2.value = '';
+
+                // 重新顯示目前的區塊
+                showPage(currentPage);
+
+                // 關閉 變更代理名稱 動態框
+                // 取視窗id關閉
+                let modal = document.getElementById('changeBusiness');
+                if (modal) {
+                    let bsModal = bootstrap.Modal.getInstance(modal);
+                    if (bsModal) {
+                        bsModal.hide();
+                    };
+                };
+            };
+        };
+
+
+        // 分頁製作---開始
+            // 所有內容
+            let blocks = document.getElementsByClassName('bloCk');
+            // 初始每頁顯示的區塊數量
+            let blocksPerPage = 10;
+            // 當前顯示的分頁
+            let currentPage = 1;
+            // 更新區塊數量顯示
+            document.getElementById('block-count').textContent = `共 ${blocks.length} 項`;
+
+            // 初始化顯示第一頁的區塊
+            showPage(currentPage);
+
+            // 動態生成分頁按鈕
+            function generatePagination() {
+                // 幾筆資料 除以 顯示的區塊數量
+                const pageCount = Math.ceil(blocks.length / blocksPerPage);
+
+                // 分頁顯示  幾個區塊
+                const maxVisible = 2;
+                let paginationHTML = '';
+
+                // 添加前一頁按鈕
+                if (currentPage > 1) {
+                    paginationHTML += `<button onclick="showPage(${currentPage - 1})">«</button>`;
+                } else {
+                    paginationHTML += `<button class="disabled">«</button>`;
+                };
+
+
+                // 計算顯示的分頁範圍
+                let startPage = 1;
+                let endPage = pageCount;
+
+                if (pageCount > maxVisible) {
+                    const halfVisible = Math.floor(maxVisible / 2);
+                    if (currentPage <= halfVisible) {
+                        // 當前頁面位於最前面部分
+                        endPage = maxVisible;
+                    } else if (currentPage + halfVisible >= pageCount) {
+                        // 當前頁面位於最後面部分
+                        startPage = pageCount - maxVisible + 1;
+                        endPage = pageCount;
+                    } else {
+                        // 當前頁面在中間部分
+                        startPage = currentPage - halfVisible;
+                        endPage = currentPage + halfVisible;
+                    };
+                };
+
+
+                // 添加前面省略號
+                if (startPage > 1) {
+                    paginationHTML += `<button onclick="showPage(1)">1</button>`;
+                    if (startPage > 2) {
+                        paginationHTML += `<button onclick="showPage(${startPage - 1})" class="ellipsis">...</button>`;
+                    };
+                };
+
+                // 添加頁碼按鈕
+                for (let i = startPage; i <= endPage; i++) {
+                    if (i === currentPage) {
+                        paginationHTML += `<button class="active">${i}</button>`;
+                    } else {
+                        paginationHTML += `<button onclick="showPage(${i})">${i}</button>`;
+                    };
+                };
+
+                // 添加後面省略號
+                if (endPage < pageCount) {
+                    if (endPage < pageCount - 1) {
+                        paginationHTML += `<button onclick="showPage(${endPage + 1})" class="ellipsis">...</button>`;
+                    };
+                    paginationHTML += `<button onclick="showPage(${pageCount})">${pageCount}</button>`;
+                };
+
+                // 添加下一頁按鈕
+                if (currentPage < pageCount) {
+                    paginationHTML += `<button onclick="showPage(${currentPage + 1})">»</button>`;
+                } else {
+                    paginationHTML += `<button class="disabled">»</button>`;
+                };
+
+                document.getElementById('pagination').innerHTML = paginationHTML;
+            };
+
+            // 顯示指定分頁的區塊
+            function showPage(pageNumber) {
+                currentPage = pageNumber; // 更新當前分頁
+
+                let startIndex = (pageNumber - 1) * blocksPerPage;
+                let endIndex = startIndex + blocksPerPage;
+
+                // 隱藏所有區塊
+                for (let i = 0; i < blocks.length; i++) {
+                    // blocks[i].style.display = 'none';
+                    blocks[i].classList.add('d-none');
+                };
+
+                // 顯示該分頁對應的區塊
+                for (let i = startIndex; i < endIndex && i < blocks.length; i++) {
+                    // blocks[i].style.display = 'block';
+                    blocks[i].classList.remove('d-none');
+                };
+
+                // 重新生成分頁按鈕
+                generatePagination();
+            };
+
+            // 顯示指定數量的區塊
+            function showBlocks(count) {
+                blocksPerPage = count; // 更新每頁顯示的區塊數量
+                currentPage = 1; // 重置當前分頁為第一頁
+                showPage(currentPage); // 重新顯示第一頁的區塊
+                generatePagination(); // 重新生成分頁按鈕
+
+                // 顯示指定數量 的文字變更
+                const toggleOptionsBtn = document.getElementById('toggleOptionsBtn');
+                toggleOptionsBtn.textContent = `顯示 ${count} 項`;
+            };
+        // 分頁製作---結束
+    </script>
+    
+
+
+
+</body>
+</html>

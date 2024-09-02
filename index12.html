@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>(2)Line業務對話系統</title>
+  <meta property="og:locale" content="zh_TW" />
+
+
+  <!-- Bootstrap5 Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+  <!-- Flatpickr -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+  <!-- 自己ＣＳＳ -->
+  <link rel="stylesheet" href="./css/all-Bootstrap-Sass.css">
+  
+</head>
+
+<style>
+    tr
+    {
+        background-color: #eaeaea;
+    }
+    /* 設置背景顏色為灰色 */
+    tr:nth-child(odd) td 
+    {
+        background-color: #fff;
+    }
+    /* 第二列的背景顏色 */
+    tr:nth-child(even) td
+    {
+        background-color: #fafafa;
+    }
+</style>
+
+<body style="padding-top: 85px;">
+    <!-- 導覽列 -->
+    <header class="position-relative position-fixed w-100 top-0" style="z-index: 100;">
+        <nav class="navbar navbar-light shadow" style="background-color: #37424c;">
+            <div class="container-fluid justify-content-start">
+                <!-- LOGO -->
+                <h1 class="ms-2 mb-0">
+                    <a class="navbar-brand logo" href="#">logo</a>
+                </h1>
+                <!-- 按鈕 -->
+                <button class="border-0 ms-2 px-3 lineBtn direction" type="button" style="background-color: #37424c;">
+                    <i class="bi bi-list text-white fs-2" style="position: relative; z-index: -1;"></i>
+                </button>
+                <div class="lantern-announcement-box">
+                    <!-- ？ -->
+                </div>
+                <!-- 客服人員 -->
+                <div class="customerService p-3 direction">
+                    <img src="./images/img/user-1.7458f61d.jpg" alt="客服人員圖片" class="customerServiceImg">
+                    <span class="customerServiceName">
+                        jc
+                        <i class="bi bi-chevron-down"></i>
+                    </span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 使用者設定 -->
+        <div class="userSettings rounded-3">
+            <h6  class="userSettingsItile">Welcome !</h6>
+            <a href="./index14.html" target="_blank" class="userSettingsLink"><i class="bi bi-gear-wide-connected me-2"></i>Setting</a>
+            <a href="./index15.html" target="_blank" class="userSettingsLink"><i class="bi bi-lock-fill me-2"></i>修改密碼</a>
+            <hr class="my-1">
+            <a href="#" class="userSettingsLink mb-2" id="signOut"><i class="bi bi-door-open me-2"></i>登出</a>
+        </div>
+    </header>
+
+    <!-- 業務對話系統樣式 -->
+    <section class="d-flex">
+        <div class="businessDialogueSystem ">
+            <button class="btn businessDialogueSystemBtn text-start" type="button">
+                <i class="bi bi-headset me-2 fs-5"></i>
+                <span>業務對話系統</span>
+            </button>
+            <ul class="list-unstyled businessDialogueSystemBox">
+                <li><a href="./index2.html" class="businessDialogueSystemLink">對話列表</a></li>
+                <li><a href="./index3.html" class="businessDialogueSystemLink">對話標籤統計</a></li>
+                <li><a href="./index4.html" class="businessDialogueSystemLink">對話紀錄檢討表</a></li>
+                <li><a href="./index5.html" class="businessDialogueSystemLink">人員錯誤檢討</a></li>
+                <li><a href="./index6.html" class="businessDialogueSystemLink">權限設定</a></li>
+                <li><a href="./index7.html" class="businessDialogueSystemLink">Line名稱列表</a></li>
+                <li><a href="./index8.html" class="businessDialogueSystemLink">Line名單管理</a></li>
+                <li><a href="./index9.html" class="businessDialogueSystemLink">Line名單群組列表</a></li>
+                <li><a href="./index10.html" class="businessDialogueSystemLink">問題分類</a></li>
+                <li><a href="./index11.html" class="businessDialogueSystemLink">對話評分表</a></li>
+                <li><a href="./index12.html" class="businessDialogueSystemLink active">编辑歡迎語</a></li>
+                <li><a href="./index13.html" class="businessDialogueSystemLink">跑馬燈公告</a></li>
+            </ul>
+        </div>
+
+        <!-- 資訊欄位 -->
+        <div class="informationField">
+            <div class="container-fluid px-5">
+                <div class="row">
+                    <div class="col-12 my-4 fw-light">
+                        <span>業務對話系統</span>
+                        <i class="bi bi-chevron-right"></i>
+                        <span>编辑歡迎語</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 bg-white p-4 rounded-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="button" class="btn btn-purple" data-bs-toggle="modal" data-bs-target="#commonWords">
+                                    新增
+                                    <i class="bi bi-plus-circle-fill ms-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="overflow-hidden p-3" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
+                                <div class="col-12 fw-light table-responsive" style=" font-size: 14px;">
+                                    <table class="table table-borderless table-hover text-nowrap align-middle">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col" width="185">創建時間</th>
+                                            <th scope="col" width="500">常用詞</th>
+                                            <th scope="col" width="185">修改時間</th>
+                                            <th scope="col" width="130">操作</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody id="renderTable">
+                                          <!-- <tr>
+                                            <td>
+                                                2023-07-07 09:27:35
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control fs-all-14" value="炎炎夏日-test-2023-07-07">
+                                            </td>
+                                            <td>
+                                                2023-07-07 09:27:35
+                                            </td>
+                                            <td>                                           
+                                                <button type="button" class="btn btn-sm btn-custom-c7faed">保存</button>
+                                                <button type="button" class="btn btn-sm btn-custom-fee1e5">刪除</button>
+                                            </td>
+                                          </tr> -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 d-flex align-items-center flex-wrap">
+                                <!-- 共幾項資料 -->
+                                <div id="block-count">共79項</div>
+                                <!-- 顯示項目數量 -->
+                                <div class="btn-group ms-0 ms-sm-3">
+                                    <button type="button" class="btn btn-custom-c7faed dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="toggleOptionsBtn">
+                                        顯示 10 項
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                      <li><a class="dropdown-item" href="#" onclick="showBlocks(10)">顯示 10 項</a></li>
+                                      <li><a class="dropdown-item" href="#" onclick="showBlocks(20)">顯示 20 項</a></li>
+                                      <li><a class="dropdown-item" href="#" onclick="showBlocks(30)">顯示 30 項</a></li>
+                                    </ul>
+                                </div>
+                                <!-- 這裡將由 JavaScript 生成分頁按鈕 -->
+                                <div id="pagination" class="pagination flex-wrap">
+                                    <!-- ... -->
+                                </div>                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </section>
+
+
+        <!-- 新增常用詞 動態框 -->
+        <div class="modal fade" id="commonWords" tabindex="-1" aria-labelledby="commonWordsLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h6 class="modal-title" id="commonWordsLabel">新增</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="font-size: 14px;">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col">
+                                <span style="color: red;">*</span>
+                                <label for="addcommonWords" class="form-label">常用詞</label>
+                                <input type="text" class="form-control" placeholder="請輸入常用詞" id="addcommonWords">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick='closure()'>關閉</button>
+                    <button type="button" class="btn btn-primary" onclick='saveChanges()'>保存</button>
+                </div>
+            </div>
+            </div>
+        </div>
+    
+
+
+
+
+
+
+
+    <!--ＪＱ的核心-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <!-- sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- flatpickr 時間 插件-->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <!--自己-->
+    <script src="./dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 共用 layout js -->
+    <script src="./js/layout.js"></script>
+
+
+
+
+
+
+
+    <script>
+        // document.addEventListener('DOMContentLoaded', function () {
+
+            // 獲取 DOM 元素的邏輯抽取到一個輔助函數中
+            function getCommonWordsElement() {
+                return document.getElementById('addcommonWords');
+            }
+
+            // 保存事件
+            function saveChanges(){
+                const commonWords = getCommonWordsElement();// 輔助函數
+
+                if (commonWords.value.trim() === '') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '錯誤',
+                        text: '請填寫正確資料或者欄位不能空填'
+                    });   
+                    return; 
+                }
+                console.log('常用詞:',commonWords.value);
+                let obj = {};
+                obj.text = commonWords.value;
+                commonWords.value  = '';
+                data.unshift(obj);
+                renderingData(data);
+
+                // 更新區塊數量顯示
+                document.getElementById('block-count').textContent = `共 ${bk.length} 項`;
+
+                // 關閉 新增帳號 動態框
+                // 取視窗id關閉
+                let modal = document.getElementById('commonWords');
+                if (modal) {
+                    let bsModal = bootstrap.Modal.getInstance(modal);
+                    if (bsModal) {
+                        bsModal.hide();
+                    };
+                };
+            };
+
+            // 關閉事件
+            function closure() {
+                console.log('關閉');
+                const commonWords = getCommonWordsElement();// 輔助函數
+                commonWords.value = '';
+
+                // 關閉 批量新增 動態框
+                // 取視窗id關閉
+                let modal = document.getElementById('commonWords');
+                if (modal) {
+                    let bsModal = bootstrap.Modal.getInstance(modal);
+                    if (bsModal) {
+                        bsModal.hide();
+                    };
+                };
+            };
+
+
+
+            // 要生成的物件數量
+            const dataNum = 5;
+            // 假如有資料  用來存放生成的物件的陣列
+            const data = [];
+            // 迴圈生成物件
+            for (let i = 1; i <= dataNum; i++) {
+                if (data) {
+                    const obj = {
+                        text: `炎炎夏日${i}-test-2023-07-07`,
+                    };
+                    data.push(obj);
+                }
+            };
+            // 在tbody渲染畫面
+            const renderTable = document.getElementById('renderTable');
+            function renderingData(data){                
+                const now = new Date();// 创建一个 Date 对象，表示当前时间                
+                const year = now.getFullYear();// 年份                
+                const month = now.getMonth() + 1;// 月份（0表示1月，1表示2月，以此类推） 记得加1，因为月份从0开始                
+                const day = now.getDate();// 日期                
+                const hours = now.getHours();// 小时（24小时制）                
+                const minutes = now.getMinutes();// 分钟                
+                const seconds = now.getSeconds();// 秒钟
+
+                let str = '';
+                for (let i = 0; i < data.length; i++) {
+                    str+= `
+                        <tr class="bk">
+                            <td>
+                                ${year}-${month}-${day} ${hours}:${minutes}:${seconds}
+                            </td>
+                            <td>
+                                <input type="text" class="form-control fs-all-14" value="${data[i].text}" style="min-width: 300px;">
+                            </td>
+                            <td>
+                                ${year}-${month}-${day} ${hours}:${minutes}:${seconds}
+                            </td>
+                            <td>                                           
+                                <button type="button" class="btn btn-sm btn-custom-c7faed saVe">保存</button>
+                                <button type="button" class="btn btn-sm btn-custom-fee1e5 deLeTe">刪除</button>
+                            </td>
+                        </tr>
+                    `;    
+                }
+                renderTable.innerHTML = str;                                   
+            };
+            // 初始化
+            renderingData(data);
+
+
+            
+            // 使用事件代理處理按鈕點擊事件
+            renderTable.addEventListener('click', function (e) {
+                const blocks = e.target.closest('.bk'); // 獲取最近的 <tr> 元素
+                const input = blocks.querySelector('.form-control'); // 獲取當前行的 input 元素
+                const index = Array.from(renderTable.querySelectorAll('.bk')).indexOf(blocks); // 獲取當前行的索引
+
+                if (e.target.classList.contains('saVe')) {
+                    if (index > -1) {
+                        data[index].text = input.value.trim(); // 更新數據
+                        renderingData(data); // 重新渲染表格
+                        console.log('Updated data:', data);
+                    }
+                }else if (e.target.classList.contains('deLeTe')) {
+                    console.log(123);
+                    data.splice(index,1);// 刪除
+                    renderingData(data); // 重新渲染表格
+                    console.log(data);
+                };
+            });
+
+
+
+            // 分頁製作---開始
+                // 所有內容
+                let bk = document.getElementsByClassName('bk');
+                // 初始每頁顯示的區塊數量
+                let blocksPerPage = 10;
+                // 當前顯示的分頁
+                let currentPage = 1;
+                // 更新區塊數量顯示
+                document.getElementById('block-count').textContent = `共 ${bk.length} 項`;
+    
+                // 初始化顯示第一頁的區塊
+                showPage(currentPage);
+    
+                // 動態生成分頁按鈕
+                function generatePagination() {
+                    // 幾筆資料 除以 顯示的區塊數量
+                    const pageCount = Math.ceil(bk.length / blocksPerPage);
+    
+                    // 分頁顯示  幾個區塊
+                    const maxVisible = 2;
+                    let paginationHTML = '';
+    
+                    // 添加前一頁按鈕
+                    if (currentPage > 1) {
+                        paginationHTML += `<button onclick="showPage(${currentPage - 1})">«</button>`;
+                    } else {
+                        paginationHTML += `<button class="disabled">«</button>`;
+                    };
+    
+    
+                    // 計算顯示的分頁範圍
+                    let startPage = 1;
+                    let endPage = pageCount;
+    
+                    if (pageCount > maxVisible) {
+                        const halfVisible = Math.floor(maxVisible / 2);
+                        if (currentPage <= halfVisible) {
+                            // 當前頁面位於最前面部分
+                            endPage = maxVisible;
+                        } else if (currentPage + halfVisible >= pageCount) {
+                            // 當前頁面位於最後面部分
+                            startPage = pageCount - maxVisible + 1;
+                            endPage = pageCount;
+                        } else {
+                            // 當前頁面在中間部分
+                            startPage = currentPage - halfVisible;
+                            endPage = currentPage + halfVisible;
+                        };
+                    };
+    
+    
+                    // 添加前面省略號
+                    if (startPage > 1) {
+                        paginationHTML += `<button onclick="showPage(1)">1</button>`;
+                        if (startPage > 2) {
+                            paginationHTML += `<button onclick="showPage(${startPage - 1})" class="ellipsis">...</button>`;
+                        };
+                    };
+    
+                    // 添加頁碼按鈕
+                    for (let i = startPage; i <= endPage; i++) {
+                        if (i === currentPage) {
+                            paginationHTML += `<button class="active">${i}</button>`;
+                        } else {
+                            paginationHTML += `<button onclick="showPage(${i})">${i}</button>`;
+                        };
+                    };
+    
+                    // 添加後面省略號
+                    if (endPage < pageCount) {
+                        if (endPage < pageCount - 1) {
+                            paginationHTML += `<button onclick="showPage(${endPage + 1})" class="ellipsis">...</button>`;
+                        };
+                        paginationHTML += `<button onclick="showPage(${pageCount})">${pageCount}</button>`;
+                    };
+    
+                    // 添加下一頁按鈕
+                    if (currentPage < pageCount) {
+                        paginationHTML += `<button onclick="showPage(${currentPage + 1})">»</button>`;
+                    } else {
+                        paginationHTML += `<button class="disabled">»</button>`;
+                    };
+    
+                    document.getElementById('pagination').innerHTML = paginationHTML;
+                };
+    
+                // 顯示指定分頁的區塊
+                function showPage(pageNumber) {
+                    currentPage = pageNumber; // 更新當前分頁
+    
+                    let startIndex = (pageNumber - 1) * blocksPerPage;
+                    let endIndex = startIndex + blocksPerPage;
+    
+                    // 隱藏所有區塊
+                    for (let i = 0; i < bk.length; i++) {
+                        // bk[i].style.display = 'none';
+                        bk[i].classList.add('d-none');
+                    };
+    
+                    // 顯示該分頁對應的區塊
+                    for (let i = startIndex; i < endIndex && i < bk.length; i++) {
+                        // bk[i].style.display = 'block';
+                        bk[i].classList.remove('d-none');
+                    };
+    
+                    // 重新生成分頁按鈕
+                    generatePagination();
+                };
+    
+                // 顯示指定數量的區塊
+                function showBlocks(count) {
+                    blocksPerPage = count; // 更新每頁顯示的區塊數量
+                    currentPage = 1; // 重置當前分頁為第一頁
+                    showPage(currentPage); // 重新顯示第一頁的區塊
+                    generatePagination(); // 重新生成分頁按鈕
+    
+                    // 顯示指定數量 的文字變更
+                    const toggleOptionsBtn = document.getElementById('toggleOptionsBtn');
+                    toggleOptionsBtn.textContent = `顯示 ${count} 項`;
+                };
+            // 分頁製作---結束
+        // });
+    </script>
+
+
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const dataNum = 5;
+            const data = [];
+
+            for (let i = 1; i <= dataNum; i++) {
+                const obj = {
+                    text: '炎炎夏日-test-2023-07-07',
+                };
+                data.push(obj);
+            }
+
+            const renderTable = document.getElementById('renderTable');
+
+            function renderingData(data) {
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = now.getMonth() + 1;
+                const day = now.getDate();
+                const hours = now.getHours();
+                const minutes = now.getMinutes();
+                const seconds = now.getSeconds();
+
+                let str = '';
+                for (let i = 0; i < data.length; i++) {
+                    str += `
+                    <tr class="bk">
+                        <td>
+                            ${year}-${month}-${day} ${hours}:${minutes}:${seconds}
+                        </td>
+                        <td>
+                            <input type="text" class="form-control fs-all-14" value="${data[i].text}">
+                        </td>
+                        <td>                                           
+                            ${year}-${month}-${day} ${hours}:${minutes}:${seconds}
+                        </td>
+                        <td>                                           
+                            <button type="button" class="btn btn-sm btn-custom-c7faed saVe">保存</button>
+                            <button type="button" class="btn btn-sm btn-custom-fee1e5 deLeTe">刪除</button>
+                        </td>
+                    </tr>
+                    `;
+                }
+                renderTable.innerHTML = str;
+
+                // 在渲染後綁定事件
+                bindEvents();
+            }
+
+            function bindEvents() {
+                // 使用 forEach 綁定事件
+                const saVeButtons = document.querySelectorAll('.saVe');
+                saVeButtons.forEach((save, ind) => {
+                    save.addEventListener('click', function (e) {
+                        const row = e.target.closest('.bk');
+                        const input = row.querySelector('.form-control');
+                        const index = Array.from(renderTable.querySelectorAll('.bk')).indexOf(row);
+
+                        if (index > -1) {
+                            data[index].text = input.value.trim();
+
+                            
+
+                            console.log('Updated data:', data);
+                        }
+
+                        renderingData(data); // 重新渲染表格
+                    });
+                });
+            }
+
+            renderingData(data);
+        });
+    </script> -->
+</body>
+</html>

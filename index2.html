@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>(2)Line業務對話系統</title>
+  <meta property="og:locale" content="zh_TW" />
+
+
+  <!-- Bootstrap5 Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+  <!-- Flatpickr -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+  <!-- 自己ＣＳＳ -->
+  <link rel="stylesheet" href="./css/all-Bootstrap-Sass.css">
+  
+</head>
+<body style="padding-top: 85px;">
+    <!-- 導覽列 -->
+    <header class="position-relative position-fixed w-100 top-0" style="z-index: 100;">
+        <nav class="navbar navbar-light shadow" style="background-color: #37424c;">
+            <div class="container-fluid justify-content-start">
+                <!-- LOGO -->
+                <h1 class="ms-2 mb-0">
+                    <a class="navbar-brand logo" href="#">logo</a>
+                </h1>
+                <!-- 按鈕 -->
+                <button class="border-0 ms-2 px-3 lineBtn direction" type="button" style="background-color: #37424c;">
+                    <i class="bi bi-list text-white fs-2" style="position: relative; z-index: -1;"></i>
+                </button>
+                <div class="lantern-announcement-box">
+                    <!-- ？ -->
+                </div>
+                <!-- 客服人員 -->
+                <div class="customerService p-3 direction">
+                    <img src="./images/img/user-1.7458f61d.jpg" alt="客服人員圖片" class="customerServiceImg">
+                    <span class="customerServiceName">
+                        jc
+                        <i class="bi bi-chevron-down"></i>
+                    </span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 使用者設定 -->
+        <div class="userSettings rounded-3">
+            <h6  class="userSettingsItile">Welcome !</h6>
+            <a href="./index14.html" target="_blank" class="userSettingsLink"><i class="bi bi-gear-wide-connected me-2"></i>Setting</a>
+            <a href="./index15.html" target="_blank" class="userSettingsLink"><i class="bi bi-lock-fill me-2"></i>修改密碼</a>
+            <hr class="my-1">
+            <a href="#" class="userSettingsLink mb-2" id="signOut"><i class="bi bi-door-open me-2"></i>登出</a>
+        </div>
+    </header>
+
+    <!-- 業務對話系統樣式 -->
+    <section class="d-flex">
+        <div class="businessDialogueSystem ">
+            <button class="btn businessDialogueSystemBtn text-start" type="button">
+                <i class="bi bi-headset me-2 fs-5"></i>
+                <span>業務對話系統</span>
+            </button>
+            <ul class="list-unstyled businessDialogueSystemBox">
+                <li><a href="./index2.html" class="businessDialogueSystemLink active">對話列表</a></li>
+                <li><a href="./index3.html" class="businessDialogueSystemLink">對話標籤統計</a></li>
+                <li><a href="./index4.html" class="businessDialogueSystemLink">對話紀錄檢討表</a></li>
+                <li><a href="./index5.html" class="businessDialogueSystemLink">人員錯誤檢討</a></li>
+                <li><a href="./index6.html" class="businessDialogueSystemLink">權限設定</a></li>
+                <li><a href="./index7.html" class="businessDialogueSystemLink">Line名稱列表</a></li>
+                <li><a href="./index8.html" class="businessDialogueSystemLink">Line名單管理</a></li>
+                <li><a href="./index9.html" class="businessDialogueSystemLink">Line名單群組列表</a></li>
+                <li><a href="./index10.html" class="businessDialogueSystemLink">問題分類</a></li>
+                <li><a href="./index11.html" class="businessDialogueSystemLink">對話評分表</a></li>
+                <li><a href="./index12.html" class="businessDialogueSystemLink">编辑歡迎語</a></li>
+                <li><a href="./index13.html" class="businessDialogueSystemLink">跑馬燈公告</a></li>
+            </ul>
+        </div>
+
+        <!-- 資訊欄位 -->
+        <div class="informationField">
+            <div class="container-fluid px-5">
+                <div class="row">
+                    <div class="col-12 my-4 fw-light">
+                        <span>業務對話系統</span>
+                        <i class="bi bi-chevron-right"></i>
+                        <span>對話列表</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 bg-white p-4 rounded-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+                        <div class="row">
+                            <!-- 開始時間 -->
+                            <div class="col-md-6 d-flex mb-3 mb-md-0 position-relative">
+                                <label for="startDatetimepicker1" class="col-form-label text-nowrap me-2">開始時間</label>
+                                <input type="datetime-local" id="startDatetimepicker1" name="startDatetimepicker1" class="form-control form-control-sm ps-5" placeholder="請選擇開始時間">
+                                <i class="bi bi-clock-history position-absolute" style="top: 8px; left: 100px;"></i>
+                            </div>
+                            <!-- 結束時間 -->
+                            <div class="col-md-6 d-flex mb-3 mb-md-0 position-relative">
+                                <label for="endDatetimepicker1" class="col-form-label text-nowrap me-2">結束時間</label>
+                                <input type="datetime-local" id="endDatetimepicker1" name="endDatetimepicker1" class="form-control form-control-sm ps-5" placeholder="請選擇結束時間">
+                                <i class="bi bi-clock-history position-absolute" style="top: 8px; left: 100px;"></i>
+                            </div>
+                            <!-- 選項按鈕 -->
+                            <div class="col-12 text-nowrap mt-4 flex-wrap input-group">
+                                <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" value="昨日">
+                                <label class="btn btn-text-outline-info rounded-start" for="option1">昨日</label>
+                            
+                                <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" value="今日" checked>
+                                <label class="btn btn-text-outline-info" for="option2">今日</label>
+
+                                <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off" value="上週">
+                                <label class="btn btn-text-outline-info" for="option3">上週</label>
+
+                                <input type="radio" class="btn-check" name="options" id="option4" autocomplete="off" value="本週">
+                                <label class="btn btn-text-outline-info" for="option4">本週</label>
+
+                                <input type="radio" class="btn-check" name="options" id="option5" autocomplete="off" value="上月">
+                                <label class="btn btn-text-outline-info" for="option5">上月</label>
+
+                                <input type="radio" class="btn-check" name="options" id="option6" autocomplete="off" value="本月">
+                                <label class="btn btn-text-outline-info" for="option6">本月</label>
+                            </div>
+                        </div>
+                        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 mt-3">
+                            <!-- 會員名稱 -->
+                            <div class="col">
+                                <label for="memberName" class="col-form-label text-nowrap">會員名稱</label>
+                                <input type="text" class="form-control" id="memberName" placeholder="請輸入會員名稱">
+                            </div>
+                            <!-- 業務 -->
+                            <div class="col">
+                                <label for="business" class="col-form-label text-nowrap">業務</label>
+                                <select class="form-select"id="business">
+                                    <option value="" selected disabled hidden>全部</option>
+                                    <option value="1">離職(京)</option>
+                                    <option value="2">喬伊</option>
+                                    <option value="3">卡洛斯</option>
+                                    <option value="4">墾丁</option>
+                                    <option value="5">威寶</option>
+                                    <option value="6">小馬</option>
+                                    <option value="7">小v</option>
+                                </select>
+                            </div>
+                            <!-- 業務小號 -->
+                            <div class="col">
+                                <label for="businessAccount" class="col-form-label text-nowrap">業務小號</label>
+                                <select class="form-select"id="businessAccount">
+                                    <option value="" selected disabled hidden>全部</option>
+                                    <option value="1">Admin</option>
+                                    <option value="2">jc</option>
+                                    <option value="3">wai1204-小-菱菱</option>
+                                    <option value="4">wai1204-小-珮珮</option>
+                                    <option value="5">wai1204-小-🎀莉亞🎀</option>
+                                </select>
+                            </div>
+                            <!-- 對話內容 -->
+                            <div class="col">
+                                <label for="conversationContent" class="col-form-label text-nowrap">對話內容</label>
+                                <input type="text" class="form-control" id="conversationContent" placeholder="請輸入關鍵字">
+                            </div>
+                        </div>
+                        <div class="row row-cols-1 row-cols-lg-4 mt-3">
+                            <!-- 通話時間 -->
+                            <div class="col">
+                                <label for="callTime" class="col-form-label text-nowrap">通話時間</label>
+                                <input type="number" class="form-control" id="callTime" placeholder="請輸入通話時間(秒)">
+                            </div>
+                            <!-- 抽查 -->
+                            <div class="col">
+                                <label for="spotCheck" class="col-form-label text-nowrap">抽查</label>
+                                <select class="form-select"id="spotCheck">
+                                    <option value="" selected disabled hidden>請選擇</option>
+                                    <option value="true">是</option>
+                                    <option value="false">否</option>
+                                </select>
+                            </div>
+                            <!-- 對應帳號 -->
+                            <div class="col">
+                                <label for="correspondingAccount" class="col-form-label text-nowrap">對應帳號</label>
+                                <input type="text" class="form-control" id="correspondingAccount" placeholder="請輸入對應帳號">
+                            </div>
+                            <!-- 已讀 -->
+                            <div class="col">
+                                <label for="haveRead" class="col-form-label text-nowrap">已讀</label>
+                                <select class="form-select"id="haveRead">
+                                    <option value="" selected disabled hidden>請選擇</option>
+                                    <option value="true">已讀</option>
+                                    <option value="false">未讀</option>
+                                    <option value="all">全部</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <!-- 打勾選項 -->
+                            <span class="mb-1">評估</span>
+                            <div class="col-12">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                    <label class="form-check-label" for="inlineCheckbox1">未評估</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                    <label class="form-check-label" for="inlineCheckbox2">優良對話</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                                    <label class="form-check-label" for="inlineCheckbox3">正確</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                                    <label class="form-check-label" for="inlineCheckbox4">錯誤</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
+                                    <label class="form-check-label" for="inlineCheckbox5">其他</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
+                                    <label class="form-check-label" for="inlineCheckbox6">未追中</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="option7">
+                                    <label class="form-check-label" for="inlineCheckbox7">未依照流程開發</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox8" value="option8">
+                                    <label class="form-check-label" for="inlineCheckbox8">無效對話</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox9" value="option9">
+                                    <label class="form-check-label" for="inlineCheckbox9">已評估</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <button type="button" class="btn btn-purple" id="captureButton">
+                                    查詢
+                                    <i class="bi bi-search ms-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="no-data">當前無資料</div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    <!--ＪＱ的核心-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <!-- sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- flatpickr 時間 插件-->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <!--自己-->
+    <script src="./dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 共用 layout js -->
+    <script src="./js/layout.js"></script>
+ 
+
+
+
+
+    <script>
+        let ChineseLocale = {
+            weekdays: {
+                shorthand: ['日', '一', '二', '三', '四', '五', '六'],
+                longhand: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+            },
+            months: {
+                shorthand: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+                longhand: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+            },
+            ordinal: function () {
+                return '日';
+            },
+            rangeSeparator: ' 至 ',
+            weekAbbreviation: '週',
+            scrollTitle: '滾動切換',
+            toggleTitle: '點擊切換 12/24 小時時制',
+            amPM: ['上午', '下午']
+        };
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // 初始化 Flatpickr 開始時間
+            let flatpickrInstance1 = flatpickr('#startDatetimepicker1', {
+                enableTime: true,       // 启用时间选择
+                dateFormat: 'Y/m/d H:i', // 日期时间格式
+                locale: ChineseLocale,   // 使用中文语言包
+                altInput: true,          // 在文本框旁显示选择的日期
+                altFormat: 'Y/m/d H:i',  // 文本框中显示的日期时间格式
+                time_24hr: false,        // 使用12小时制而非24小时制
+                inline: false,           // 非内联模式，即弹出式
+                disableMobile: true      // 禁用移动设备优化
+            });
+
+            // 初始化 Flatpickr 結束時間
+            let flatpickrInstance2 = flatpickr('#endDatetimepicker1', {
+                enableTime: true,       // 启用时间选择
+                dateFormat: 'Y/m/d H:i', // 日期时间格式
+                locale: ChineseLocale,   // 使用中文语言包
+                altInput: true,          // 在文本框旁显示选择的日期
+                altFormat: 'Y/m/d H:i',  // 文本框中显示的日期时间格式
+                time_24hr: false,        // 使用12小时制而非24小时制
+                inline: false,           // 非内联模式，即弹出式
+                disableMobile: true      // 禁用移动设备优化
+            });
+        });
+    </script>
+
+    <script>
+        // 評估 打勾效果 和 禁用
+
+        // 获取所有的复选框和对应的标签
+        const checkboxes = document.querySelectorAll('.form-check-input');
+        const labels = document.querySelectorAll('.form-check-label');
+
+        // 遍历每个复选框并添加点击事件监听器
+        checkboxes.forEach((checkbox, index) => {
+            checkbox.addEventListener('click', function() {
+                // 如果点击的是第一个复选框
+                if (index === 0) {
+                    // 设置其他复选框的禁用状态
+                    checkboxes.forEach((cb, idx) => {
+                        if (idx !== 0) {
+                            cb.disabled = this.checked;
+                        }
+                    });
+                } else {
+                    // 如果点击的是非第一个复选框
+                    // 禁用第一个复选框
+                    checkboxes[0].disabled = true;
+
+                    // 检查其他复选框的状态
+                    let anyChecked = false;
+                    checkboxes.forEach((cb, idx) => {
+                        if (idx !== 0 && cb.checked) {
+                            anyChecked = true;
+                        }
+                    });
+
+                    // 如果没有其他复选框被选中，则启用第一个复选框
+                    if (!anyChecked) {
+                        checkboxes[0].disabled = false;
+                    }
+                }
+
+                // 根据复选框的状态设置对应标签文字颜色
+                labels[index].classList.toggle('text-purple', this.checked);
+            });
+
+            // 初始化时根据复选框初始状态设置对应标签文字颜色
+            labels[index].classList.toggle('text-purple', checkbox.checked);
+        });
+    </script>
+
+    <script>
+        // 取得捕獲按鈕元素 查詢
+        const captureButton = document.getElementById('captureButton');
+
+        // 監聽按鈕點擊事件
+        captureButton.addEventListener('click', function() {
+            // 取得表單輸入元素
+            const startDatetimepicker1 = document.getElementById('startDatetimepicker1');
+            const endDatetimepicker1 = document.getElementById('endDatetimepicker1');
+            const memberName = document.getElementById('memberName');
+            const business = document.getElementById('business');
+            const businessAccount = document.getElementById('businessAccount');
+            const conversationContent = document.getElementById('conversationContent');
+            const callTime = document.getElementById('callTime');
+            const spotCheck = document.getElementById('spotCheck');
+            const correspondingAccount = document.getElementById('correspondingAccount');
+            const haveRead = document.getElementById('haveRead');
+
+            // 取得選擇的日期範圍
+            let dateRange = '';
+            let dateRange2 = '';
+            const radioButtons = document.getElementsByName('options');
+            // 遍歷單選按鈕列表
+            radioButtons.forEach(button => {
+                if (button.checked) {
+                    // 獲取相鄰的 label 元素的文本内容
+                    const label = button.nextElementSibling;
+                    dateRange = label.textContent.trim();
+                    // 獲取相鄰的 label 元素的value
+                    dateRange2 = button.value;
+                }
+            });
+
+            // 取得評估選項
+            const evaluations = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+                                    .map(input => input.labels[0].textContent);
+
+            // 檢查是否有任何輸入是空的
+            if (![startDatetimepicker1.value, endDatetimepicker1.value, memberName.value, business.value, businessAccount.value, conversationContent.value, callTime.value, spotCheck.value, correspondingAccount.value, haveRead.value].every(Boolean) || evaluations.length === 0) {
+                // 如果有空值，顯示警告
+                Swal.fire({
+                    icon: 'error',
+                    title: '錯誤',
+                    text: '請填寫所有必填欄位並選擇評估選項！'
+                });
+            } else {
+                // 如果沒有空值，輸出表單資料到控制台
+                console.log('日期範圍:', dateRange);
+                console.log('日期範圍:', dateRange2);
+                console.log('開始時間:', startDatetimepicker1.value);
+                console.log('結束時間:', endDatetimepicker1.value);
+                console.log('會員名稱:', memberName.value);
+                console.log('業務:', business.options[business.selectedIndex].text);
+                console.log('業務:', business.value);
+                console.log('業務小號:', businessAccount.options[businessAccount.selectedIndex].text);
+                console.log('業務小號:', businessAccount.value);
+                console.log('對話內容:', conversationContent.value);
+                console.log('通話時間:', callTime.value);
+                console.log('抽查:', spotCheck.options[spotCheck.selectedIndex].text);
+                console.log('抽查:', spotCheck.value);
+                console.log('對應帳號:', correspondingAccount.value);
+                console.log('已讀:', haveRead.options[haveRead.selectedIndex].text);
+                console.log('已讀:', haveRead.value);
+                console.log('評估:', evaluations.join(', '));
+
+                // 這裡可以加上提交表單或其他相應的處理
+            }
+        });
+    </script>
+
+</body>
+</html>

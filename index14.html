@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>(2)Line業務對話系統</title>
+  <meta property="og:locale" content="zh_TW" />
+
+
+  <!-- Bootstrap5 Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+  <!-- Flatpickr -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+  <!-- 自己ＣＳＳ -->
+  <link rel="stylesheet" href="./css/all-Bootstrap-Sass.css">
+  
+</head>
+
+<style>
+    tr
+    {
+        background-color: #eaeaea;
+    }
+    /* 設置背景顏色為灰色 */
+    tr:nth-child(odd) td 
+    {
+        background-color: #fff;
+    }
+    /* 第二列的背景顏色 */
+    tr:nth-child(even) td
+    {
+        background-color: #fafafa;
+    }
+</style>
+
+<body>
+    <!-- 業務對話系統樣式 -->
+    <section>
+        <div style="background-color: #38414a;">
+            <h4 class="py-3 text-white text-center fw-light">權限設定</h4>
+        </div>
+        <div class="container-fluid p-5 min-vh-100" style="background-color: #f5f5f5;">
+            <div class="row">
+                <div class="col-12 bg-white px-4 rounded-5" style="box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;">
+                    <div class="row mt-4">
+                        <div class="overflow-hidden p-3" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
+                            <div class="col-12 fw-light table-responsive" style=" font-size: 14px;">
+                                <table class="table table-borderless table-hover text-nowrap align-middle">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col" width="200">帳號</th>
+                                        <th scope="col" width="150">部門(職稱)</th>
+                                        <th scope="col" width="350">產品</th>
+                                        <th scope="col" width="80">操作</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody id="renderTable">
+                                        <!-- <tr>
+                                            <td>
+                                                admin
+                                            </td>
+                                            <td>
+                                                <div>--</div>
+                                            </td>
+                                            <td>
+                                                <div class='bk'>
+                                                    <input class="form-check-input" type="checkbox" value="" id="a">
+                                                    <label class="form-check-label me-2" for="a">客服對話系統</label>
+                                                  
+                                                    <input class="form-check-input" type="checkbox" value="" id="aa">
+                                                    <label class="form-check-label me-2" for="aa">LiveChat</label>
+                                                  
+                                                    <input class="form-check-input" type="checkbox" value="" id="aaa">
+                                                    <label class="form-check-label me-2" for="aaa">電子書</label>
+                                                  
+                                                    <input class="form-check-input" type="checkbox" value="" id="aaaa">
+                                                    <label class="form-check-label me-2" for="aaaa">Mantis</label>
+                                                  
+                                                    <input class="form-check-input" type="checkbox" value="" id="aaaaa">
+                                                    <label class="form-check-label me-2" for="aaaaa">線上考核</label>
+
+                                                    <input class="form-check-input" type="checkbox" value="" id="aaaaaa">
+                                                    <label class="form-check-label me-2" for="aaaaaa">影城後台管理</label>
+
+                                                    <input class="form-check-input" type="checkbox" value="" id="aaaaaaa">
+                                                    <label class="form-check-label me-2" for="aaaaaaa">論壇後台管理</label>
+                                                  </div>
+                                            </td>
+                                            <td>                                           
+                                                <button type="button" class="btn btn-sm btn-custom-c7faed">保存</button>
+                                            </td>
+                                        </tr> -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row my-4">
+                        <div class="col-12 d-flex align-items-center flex-wrap">
+                            <!-- 共幾項資料 -->
+                            <div id="block-count">共79項</div>
+                            <!-- 顯示項目數量 -->
+                            <div class="btn-group ms-0 ms-sm-3">
+                                <button type="button" class="btn btn-custom-c7faed dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="toggleOptionsBtn">
+                                    顯示 10 項
+                                </button>
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="#" onclick="showBlocks(10)">顯示 10 項</a></li>
+                                  <li><a class="dropdown-item" href="#" onclick="showBlocks(20)">顯示 20 項</a></li>
+                                  <li><a class="dropdown-item" href="#" onclick="showBlocks(30)">顯示 30 項</a></li>
+                                </ul>
+                            </div>
+                            <!-- 這裡將由 JavaScript 生成分頁按鈕 -->
+                            <div id="pagination" class="pagination flex-wrap">
+                                <!-- ... -->
+                            </div>                                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>            
+    </section>
+
+
+
+
+
+    
+
+
+
+
+
+
+
+    <!--ＪＱ的核心-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <!-- sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- flatpickr 時間 插件-->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.7.13/tinymce.min.js"></script>
+
+    <!--自己-->
+    <script src="./dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 共用 layout js -->
+    <!-- <script src="./js/layout.js"></script> -->
+
+
+
+
+
+    <script>
+        // 要生成的物件數量
+        const dataNum = 50;
+        // 假如有資料  用來存放生成的物件的陣列
+        const data = [];
+        // 迴圈生成物件
+        for (let i = 0; i < dataNum; i++) {
+            if (data) {
+                if (i === 0) {
+                    const obj = {
+                        blockIndex: i,
+                        accountNumber: 'admin',
+                        department: '--',
+                        state: ["客服對話系統", "LiveChat", "電子書", "Mantis", "線上考核", "影城後台管理", "論壇後台管理"]
+                    };
+                    data.push(obj);                    
+                }else{
+                    const obj = {
+                        blockIndex: i,
+                        accountNumber: `使用者${i}`,
+                        department: '客服部',
+                        state: []
+                    };
+                    data.push(obj); 
+                };
+            }
+        };
+        // 在tbody渲染畫面 
+        const renderTable = document.getElementById('renderTable');
+        function renderingData(data){
+            let str = '';
+            for (let i = 0; i < data.length; i++) {
+                str+= `
+                <tr class="bk">
+                    <td>
+                        ${data[i].accountNumber}
+                    </td>
+                    <td>
+                        <div>${data[i].department}</div>
+                    </td>
+                    <td>
+                        <div>
+                            <input class="form-check-input" type="checkbox" value="" id="customerServiceDialogueSystem${i}">
+                            <label class="form-check-label me-2" for="customerServiceDialogueSystem${i}">客服對話系統</label>
+                            
+                            <input class="form-check-input" type="checkbox" value="" id="LiveChat${i}">
+                            <label class="form-check-label me-2" for="LiveChat${i}">LiveChat</label>
+                            
+                            <input class="form-check-input" type="checkbox" value="" id="eBook${i}">
+                            <label class="form-check-label me-2" for="eBook${i}">電子書</label>
+                            
+                            <input class="form-check-input" type="checkbox" value="" id="Mantis${i}">
+                            <label class="form-check-label me-2" for="Mantis${i}">Mantis</label>
+                            
+                            <input class="form-check-input" type="checkbox" value="" id="onlineAssessment${i}">
+                            <label class="form-check-label me-2" for="onlineAssessment${i}">線上考核</label>
+
+                            <input class="form-check-input" type="checkbox" value="" id="cinemaBackgroundManagement${i}">
+                            <label class="form-check-label me-2" for="cinemaBackgroundManagement${i}">影城後台管理</label>
+
+                            <input class="form-check-input" type="checkbox" value="" id="forumBackgroundManagement${i}">
+                            <label class="form-check-label me-2" for="forumBackgroundManagement${i}">論壇後台管理</label>
+                            </div>
+                    </td>
+                    <td>                                           
+                        <button type="button" class="btn btn-sm btn-custom-c7faed" onclick="saveBtn(${i})">保存</button>
+                    </td>
+                </tr>
+                `;    
+            }
+            renderTable.innerHTML = str;                                   
+        };
+        // 初始化
+        renderingData(data);
+
+
+
+
+        // 設置每個區塊的 checkbox 勾選狀態
+        function setCheckboxes() {
+            data.forEach(blockData => {
+                const block = document.querySelectorAll('.bk')[blockData.blockIndex];
+                if (block) {
+                    blockData.state.forEach(labelText => {
+                        const label = Array.from(block.querySelectorAll('.form-check-label'))
+                        .find(label => label.textContent.trim() === labelText);
+
+                        if (label) {
+                            const checkbox = document.querySelector(`input[type="checkbox"][id="${label.getAttribute('for')}"]`);
+                            if (checkbox) {
+                                checkbox.checked = true;
+                            }
+                        }
+                    });
+                };
+            });
+        };
+
+        // 收集並更新單個區塊的 checkbox 狀態
+        function saveCheckboxes(blockIndex) {
+            const block = document.querySelectorAll('.bk')[blockIndex];
+            if (!block) return;
+
+            const checkboxes = block.querySelectorAll('input[type="checkbox"]');
+            const updatedState = Array.from(checkboxes)
+            .filter(checkbox => checkbox.checked)
+            .map(checkbox => {
+                const label = block.querySelector(`label[for="${checkbox.id}"]`);
+                return label ? label.textContent.trim() : '';
+            });
+
+            // 更新 data 中對應區塊的 state
+            data[blockIndex].state = updatedState;
+
+            console.log("資料:", data);
+
+            // 重新渲染所有區塊
+            renderAllBlocks();
+        };
+
+        // 根據 data 重新渲染所有區塊的 checkbox 狀態
+        function renderAllBlocks() {
+            document.querySelectorAll('.bk').forEach((block, index) => {
+                // 清除所有現有的勾選狀態
+                const checkboxes = block.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach(checkbox => checkbox.checked = false);
+
+                // 設置新的勾選狀態
+                const state = data[index].state;
+                state.forEach(labelText => {
+                const label = Array.from(block.querySelectorAll('.form-check-label'))
+                .find(label => label.textContent.trim() === labelText);
+
+                if (label) {
+                    const checkbox = document.querySelector(`input[type="checkbox"][id="${label.getAttribute('for')}"]`);
+                    if (checkbox) {
+                    checkbox.checked = true;
+                    }
+                }
+                });
+            });
+        }
+
+        // 設置初始狀態
+        setCheckboxes();
+
+        // 為所有保存按鈕添加事件處理，僅保存該區塊的狀態
+        function saveBtn(ind){
+            console.log(ind);
+            saveCheckboxes(ind);
+        };
+        
+
+
+        // 分頁製作---開始
+            // 所有內容
+            let bk = document.getElementsByClassName('bk');
+            // 初始每頁顯示的區塊數量
+            let blocksPerPage = 10;
+            // 當前顯示的分頁
+            let currentPage = 1;
+            // 更新區塊數量顯示
+            document.getElementById('block-count').textContent = `共 ${bk.length} 項`;
+
+            // 初始化顯示第一頁的區塊
+            showPage(currentPage);
+
+            // 動態生成分頁按鈕
+            function generatePagination() {
+                // 幾筆資料 除以 顯示的區塊數量
+                const pageCount = Math.ceil(bk.length / blocksPerPage);
+
+                // 分頁顯示  幾個區塊
+                const maxVisible = 2;
+                let paginationHTML = '';
+
+                // 添加前一頁按鈕
+                if (currentPage > 1) {
+                    paginationHTML += `<button onclick="showPage(${currentPage - 1})">«</button>`;
+                } else {
+                    paginationHTML += `<button class="disabled">«</button>`;
+                };
+
+
+                // 計算顯示的分頁範圍
+                let startPage = 1;
+                let endPage = pageCount;
+
+                if (pageCount > maxVisible) {
+                    const halfVisible = Math.floor(maxVisible / 2);
+                    if (currentPage <= halfVisible) {
+                        // 當前頁面位於最前面部分
+                        endPage = maxVisible;
+                    } else if (currentPage + halfVisible >= pageCount) {
+                        // 當前頁面位於最後面部分
+                        startPage = pageCount - maxVisible + 1;
+                        endPage = pageCount;
+                    } else {
+                        // 當前頁面在中間部分
+                        startPage = currentPage - halfVisible;
+                        endPage = currentPage + halfVisible;
+                    };
+                };
+
+
+                // 添加前面省略號
+                if (startPage > 1) {
+                    paginationHTML += `<button onclick="showPage(1)">1</button>`;
+                    if (startPage > 2) {
+                        paginationHTML += `<button onclick="showPage(${startPage - 1})" class="ellipsis">...</button>`;
+                    };
+                };
+
+                // 添加頁碼按鈕
+                for (let i = startPage; i <= endPage; i++) {
+                    if (i === currentPage) {
+                        paginationHTML += `<button class="active">${i}</button>`;
+                    } else {
+                        paginationHTML += `<button onclick="showPage(${i})">${i}</button>`;
+                    };
+                };
+
+                // 添加後面省略號
+                if (endPage < pageCount) {
+                    if (endPage < pageCount - 1) {
+                        paginationHTML += `<button onclick="showPage(${endPage + 1})" class="ellipsis">...</button>`;
+                    };
+                    paginationHTML += `<button onclick="showPage(${pageCount})">${pageCount}</button>`;
+                };
+
+                // 添加下一頁按鈕
+                if (currentPage < pageCount) {
+                    paginationHTML += `<button onclick="showPage(${currentPage + 1})">»</button>`;
+                } else {
+                    paginationHTML += `<button class="disabled">»</button>`;
+                };
+
+                document.getElementById('pagination').innerHTML = paginationHTML;
+            };
+
+            // 顯示指定分頁的區塊
+            function showPage(pageNumber) {
+                currentPage = pageNumber; // 更新當前分頁
+
+                let startIndex = (pageNumber - 1) * blocksPerPage;
+                let endIndex = startIndex + blocksPerPage;
+
+                // 隱藏所有區塊
+                for (let i = 0; i < bk.length; i++) {
+                    // bk[i].style.display = 'none';
+                    bk[i].classList.add('d-none');
+                };
+
+                // 顯示該分頁對應的區塊
+                for (let i = startIndex; i < endIndex && i < bk.length; i++) {
+                    // bk[i].style.display = 'block';
+                    bk[i].classList.remove('d-none');
+                };
+
+                // 重新生成分頁按鈕
+                generatePagination();
+            };
+
+            // 顯示指定數量的區塊
+            function showBlocks(count) {
+                blocksPerPage = count; // 更新每頁顯示的區塊數量
+                currentPage = 1; // 重置當前分頁為第一頁
+                showPage(currentPage); // 重新顯示第一頁的區塊
+                generatePagination(); // 重新生成分頁按鈕
+
+                // 顯示指定數量 的文字變更
+                const toggleOptionsBtn = document.getElementById('toggleOptionsBtn');
+                toggleOptionsBtn.textContent = `顯示 ${count} 項`;
+            };
+        // 分頁製作---結束
+    </script>
+
+
+
+
+
+
+</body>
+</html>
