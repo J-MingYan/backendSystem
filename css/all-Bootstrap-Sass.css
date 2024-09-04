@@ -15533,8 +15533,8 @@ textarea.form-control-lg {
           transform: translate(-50%, -50%);
   pointer-events: none;
   border-radius: 50%;
-  -webkit-animation: animate 1s linear infinite;
-          animation: animate 1s linear infinite;
+  -webkit-animation: 1.5s animate linear infinite;
+          animation: 1.5s animate linear infinite;
 }
 
 @-webkit-keyframes animate {
@@ -15563,7 +15563,7 @@ textarea.form-control-lg {
   }
 }
 .logo {
-  background: url("/images/img/logo.cc469f1a.png");
+  background: url("../images/img/logo.cc469f1a.png");
   width: 134px;
   height: 70px;
   display: block;
@@ -16475,6 +16475,7 @@ textarea.form-control-lg {
 @media (max-width: 768px) {
   .businessDialogueSystem {
     top: 80px;
+    width: 70px;
   }
 }
 .businessDialogueSystemBtn {
@@ -16672,4 +16673,35 @@ textarea.form-control-lg {
   /* cursor: default; */
   cursor: pointer;
   background-color: white;
+}
+
+@media (max-width: 768px) {
+  .businessDialogueSystemBtn {
+    width: 100%;
+    text-align: center !important;
+    margin: 0 !important;
+    font-size: 1.5rem !important;
+  }
+  .businessDialogueSystemBtn span {
+    display: none;
+  }
+  .businessDialogueSystemBtn::after {
+    display: none;
+  }
+  .businessDialogueSystemBox {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 18px;
+    z-index: -1;
+    padding: 20px 0 0 0;
+    background-color: #37424c;
+    height: 520px;
+  }
+  .informationField {
+    margin-left: 70px;
+  }
+  .businessDialogueSystem:hover .businessDialogueSystemBox {
+    display: block;
+  }
 }/*# sourceMappingURL=all-Bootstrap-Sass.css.map */
