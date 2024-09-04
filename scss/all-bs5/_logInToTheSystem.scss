@@ -398,3 +398,48 @@
     cursor: pointer;
     background-color: white;
 }
+
+
+// 平板以下
+@media (max-width:768px)
+{
+    .businessDialogueSystemBtn
+    {
+        width: 100%;
+        text-align: center !important;
+        margin: 0 !important;
+        font-size: 1.5rem !important;
+        
+        span
+        {
+            display: none;
+        }
+
+        &::after
+        {
+            display: none;
+        }
+    }
+    .businessDialogueSystemBox
+    {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 18px;
+        z-index: -1;
+        padding: 20px 0 0 0;
+        background-color: #37424c;
+        height: 520px;
+    }    
+    .informationField
+    {
+        margin-left: 70px;
+    }
+    .businessDialogueSystem
+    {
+        &:hover .businessDialogueSystemBox
+        {
+            display: block;
+        }
+    }
+}
